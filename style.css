@@ -1,0 +1,42 @@
+/* CSS */
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+.reading-section {
+    background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%);
+}
+.quiz-card {
+    transition: all 0.3s ease;
+}
+.quiz-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.option:hover {
+    background-color: #ebf8ff;
+}
+.progress-bar {
+    transition: width 0.5s ease;
+}
+.highlight {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 0.5rem 1rem;
+}
+.tip-box {
+    background-color: #ecfdf5;
+    border-left: 4px solid #10b981;
+}
+.warning-box {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+}
+.category-btn {
+    transition: all 0.3s ease;
+}
+.category-btn:hover {
+    transform: scale(1.02);
+}
+.login-box {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
