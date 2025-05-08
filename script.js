@@ -1,102 +1,271 @@
-// Login Functionality
+// Elementos das Telas
+console.log("Script execution started.");
 const loginScreen = document.getElementById("login-screen");
+const registerScreen = document.getElementById("register-screen");
+const forgotPasswordScreen = document.getElementById("forgot-password-screen");
 const appScreen = document.getElementById("app");
+
+// Formulários
 const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const forgotPasswordForm = document.getElementById("forgot-password-form");
+
+// Inputs do Login
 const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+
+// Inputs do Cadastro
+const registerUsernameInput = document.getElementById("register-username");
+const registerEmailInput = document.getElementById("register-email");
+const registerPasswordInput = document.getElementById("register-password");
+const registerPasswordConfirmInput = document.getElementById("register-password-confirm");
+
+// Input do "Esqueceu a Senha"
+const forgotEmailInput = document.getElementById("forgot-email");
+
+// Links de Navegação
+const showRegisterLink = document.getElementById("show-register-link");
+const showLoginLinkFromRegister = document.getElementById("show-login-link-from-register");
+const showForgotPasswordLink = document.getElementById("show-forgot-password-link");
+const showLoginLinkFromForgot = document.getElementById("show-login-link-from-forgot");
+
+// Elementos da Aplicação Principal
 const usernameDisplay = document.getElementById("username-display");
 const logoutBtn = document.getElementById("logout-btn");
 
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const username = usernameInput.value;
-    // Basic validation (can be expanded)
-    if (username.trim() === "" || emailInput.value.trim() === "" || passwordInput.value.trim() === "") {
-        alert("Por favor, preencha todos os campos.");
-        return;
-    }
-    loginScreen.classList.add("hidden");
-    appScreen.classList.remove("hidden");
-    usernameDisplay.textContent = username;
-    usernameDisplay.classList.remove("hidden");
-    localStorage.setItem("cyberUser", username);
-});
-
-logoutBtn.addEventListener("click", () => {
-    appScreen.classList.add("hidden");
-    loginScreen.classList.remove("hidden");
-    usernameInput.value = "";
-    emailInput.value = "";
-    passwordInput.value = "";
-    usernameDisplay.textContent = "";
-    usernameDisplay.classList.add("hidden");
-    localStorage.removeItem("cyberUser");
-    // Reset quiz state if needed
-    resetQuiz();
-    showReadingSection(); 
-});
-
-// Check if user is already logged in
-const storedUser = localStorage.getItem("cyberUser");
-if (storedUser) {
-    loginScreen.classList.add("hidden");
-    appScreen.classList.remove("hidden");
-    usernameDisplay.textContent = storedUser;
-    usernameDisplay.classList.remove("hidden");
+// --- Lógica de Login ---
+if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = usernameInput.value;
+        if (username.trim() === "" || emailInput.value.trim() === "" || passwordInput.value.trim() === "") {
+            alert("Por favor, preencha todos os campos de login.");
+            return;
+        }
+        showAppScreen(username);
+        loginForm.reset();
+    });
 }
 
-// Tab Navigation
+// --- Lógica de Logout ---
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("cyberUser");
+        showLoginScreen();
+        resetQuiz();
+        showReadingSection(); 
+    });
+}
+
+// --- Lógica de Cadastro ---
+if (registerForm) {
+    registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const regUsername = registerUsernameInput.value.trim();
+        const regEmail = registerEmailInput.value.trim();
+        const regPassword = registerPasswordInput.value;
+        const regPasswordConfirm = registerPasswordConfirmInput.value;
+
+        if (regUsername === "" || regEmail === "" || regPassword === "" || regPasswordConfirm === "") {
+            alert("Por favor, preencha todos os campos do cadastro.");
+            return;
+        }
+        if (regPassword !== regPasswordConfirm) {
+            alert("As senhas não coincidem. Por favor, verifique.");
+            return;
+        }
+        alert(`Usuário ${regUsername} cadastrado com sucesso! Faça o login para continuar.`);
+        registerForm.reset();
+        showLoginScreen();
+    });
+}
+
+// --- Lógica de "Esqueceu a Senha" ---
+if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const forgotEmail = forgotEmailInput.value.trim();
+        if (forgotEmail === "") {
+            alert("Por favor, preencha o campo de e-mail.");
+            return;
+        }
+        // Simulação de envio de e-mail (será alterado para envio real)
+        alert(`Instruções de recuperação de senha foram enviadas para ${forgotEmail}. Verifique sua caixa de entrada.`);
+        forgotPasswordForm.reset();
+        showLoginScreen();
+    });
+}
+
+// --- Funções de Exibição de Tela ---
+function hideAllAuthScreens() {
+    if(loginScreen) loginScreen.classList.add("hidden");
+    if(registerScreen) registerScreen.classList.add("hidden");
+    if(forgotPasswordScreen) forgotPasswordScreen.classList.add("hidden");
+    if(appScreen) appScreen.classList.add("hidden");
+}
+
+function showLoginScreen() {
+    hideAllAuthScreens();
+    if(loginScreen) loginScreen.classList.remove("hidden");
+}
+
+function showRegisterScreen() {
+    hideAllAuthScreens();
+    if(registerScreen) registerScreen.classList.remove("hidden");
+}
+
+function showForgotPasswordScreen() {
+    hideAllAuthScreens();
+    if(forgotPasswordScreen) forgotPasswordScreen.classList.remove("hidden");
+}
+
+function showAppScreen(username) {
+    hideAllAuthScreens();
+    if(appScreen) appScreen.classList.remove("hidden");
+    if(usernameDisplay) {
+        usernameDisplay.textContent = username;
+        usernameDisplay.classList.remove("hidden");
+    }
+    localStorage.setItem("cyberUser", username);
+}
+
+// --- Event Listeners para Navegação entre Telas de Autenticação ---
+if (showRegisterLink) {
+    showRegisterLink.addEventListener("click", (e) => { e.preventDefault(); showRegisterScreen(); });
+}
+if (showLoginLinkFromRegister) {
+    showLoginLinkFromRegister.addEventListener("click", (e) => { e.preventDefault(); showLoginScreen(); });
+}
+if (showForgotPasswordLink) {
+    showForgotPasswordLink.addEventListener("click", (e) => { e.preventDefault(); showForgotPasswordScreen(); });
+}
+if (showLoginLinkFromForgot) {
+    showLoginLinkFromForgot.addEventListener("click", (e) => { e.preventDefault(); showLoginScreen(); });
+}
+
+// --- Lógica das Abas de Navegação da Aplicação Principal ---
 const readingTab = document.getElementById("reading-tab");
 const quizTab = document.getElementById("quiz-tab");
 const readingSection = document.getElementById("reading-section");
 const quizCategoriesSection = document.getElementById("quiz-categories-section");
 const quizSection = document.getElementById("quiz-section");
 const resultsSection = document.getElementById("results-section");
-const startQuizBtn = document.getElementById("start-quiz-btn");
+const startQuizBtn = document.getElementById("start-quiz-btn"); // Note: This ID might not exist in current HTML
 const startSelectedQuizBtn = document.getElementById("start-selected-quiz");
 
+console.log("Attempting to find readingTab:", readingTab ? "Found" : "NOT Found");
+if (readingTab) {
+    readingTab.addEventListener("click", () => {
+        console.log("Reading tab clicked");
+        showReadingSection();
+    });
+} else {
+    console.error("Reading tab (reading-tab) not found by getElementById.");
+}
+
+console.log("Attempting to find quizTab:", quizTab ? "Found" : "NOT Found");
+if (quizTab) {
+    quizTab.addEventListener("click", () => {
+        console.log("Quiz tab clicked");
+        showQuizCategoriesSection();
+    });
+} else {
+    console.error("Quiz tab (quiz-tab) not found by getElementById.");
+}
+
+if (startQuizBtn) { // This button is from the original template, might not be in the user's current HTML for reading section
+    console.log("Attempting to find startQuizBtn:", startQuizBtn ? "Found" : "NOT Found");
+    startQuizBtn.addEventListener("click", () => {
+        console.log("Start Quiz Button (start-quiz-btn) clicked");
+        showQuizCategoriesSection();
+    });
+} else {
+    console.log("Start Quiz Button (start-quiz-btn) not found or not used in current HTML.");
+}
+
 function showReadingSection() {
-    readingSection.classList.remove("hidden");
-    quizCategoriesSection.classList.add("hidden");
-    quizSection.classList.add("hidden");
-    resultsSection.classList.add("hidden");
-    readingTab.classList.add("border-blue-600", "text-blue-600");
-    readingTab.classList.remove("text-gray-500", "hover:text-gray-700");
-    quizTab.classList.add("text-gray-500", "hover:text-gray-700");
-    quizTab.classList.remove("border-blue-600", "text-blue-600");
+    console.log("showReadingSection called.");
+    if(readingSection) {
+        readingSection.classList.remove("hidden");
+        console.log("Reading section made visible.");
+    } else { console.error("readingSection element is null in showReadingSection."); }
+    
+    if(quizCategoriesSection) {
+        quizCategoriesSection.classList.add("hidden");
+        console.log("Quiz categories section hidden.");
+    } else { console.error("quizCategoriesSection element is null in showReadingSection."); }
+    
+    if(quizSection) quizSection.classList.add("hidden");
+    if(resultsSection) resultsSection.classList.add("hidden");
+
+    if(readingTab) {
+        readingTab.classList.add("border-blue-600", "text-blue-600");
+        readingTab.classList.remove("text-gray-500", "hover:text-gray-700");
+        console.log("Reading tab styled as active.");
+    }
+    if(quizTab) {
+        quizTab.classList.add("text-gray-500", "hover:text-gray-700");
+        quizTab.classList.remove("border-blue-600", "text-blue-600");
+        console.log("Quiz tab styled as inactive.");
+    }
 }
 
 function showQuizCategoriesSection() {
-    readingSection.classList.add("hidden");
-    quizCategoriesSection.classList.remove("hidden");
-    quizSection.classList.add("hidden");
-    resultsSection.classList.add("hidden");
-    quizTab.classList.add("border-blue-600", "text-blue-600");
-    quizTab.classList.remove("text-gray-500", "hover:text-gray-700");
-    readingTab.classList.add("text-gray-500", "hover:text-gray-700");
-    readingTab.classList.remove("border-blue-600", "text-blue-600");
+    console.log("showQuizCategoriesSection called.");
+    if(readingSection) {
+        readingSection.classList.add("hidden");
+        console.log("Reading section hidden.");
+    } else { console.error("readingSection element is null in showQuizCategoriesSection."); }
+    
+    if(quizCategoriesSection) {
+        console.log("quizCategoriesSection classList BEFORE remove hidden:", quizCategoriesSection.classList.toString());
+        quizCategoriesSection.classList.remove("hidden");
+        console.log("Quiz categories section made visible. classList AFTER remove hidden:", quizCategoriesSection.classList.toString());
+    } else { console.error("quizCategoriesSection element is null in showQuizCategoriesSection."); }
+    
+    if(quizSection) quizSection.classList.add("hidden");
+    if(resultsSection) resultsSection.classList.add("hidden");
+    
+    if(quizTab) {
+        quizTab.classList.add("border-blue-600", "text-blue-600");
+        quizTab.classList.remove("text-gray-500", "hover:text-gray-700");
+        console.log("Quiz tab styled as active.");
+    }
+    if(readingTab) {
+        readingTab.classList.add("text-gray-500", "hover:text-gray-700");
+        readingTab.classList.remove("border-blue-600", "text-blue-600");
+        console.log("Reading tab styled as inactive.");
+    }
 }
-
+        
 function showQuizSection() {
-    readingSection.classList.add("hidden");
-    quizCategoriesSection.classList.add("hidden");
-    quizSection.classList.remove("hidden");
-    resultsSection.classList.add("hidden");
+    console.log("showQuizSection called.");
+    if(readingSection) readingSection.classList.add("hidden");
+    if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
+    if(quizSection) quizSection.classList.remove("hidden");
+    if(resultsSection) resultsSection.classList.add("hidden");
 }
 
 function showResultsSection() {
-    readingSection.classList.add("hidden");
-    quizCategoriesSection.classList.add("hidden");
-    quizSection.classList.add("hidden");
-    resultsSection.classList.remove("hidden");
+    console.log("showResultsSection called.");
+    if(readingSection) readingSection.classList.add("hidden");
+    if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
+    if(quizSection) quizSection.classList.add("hidden");
+    if(resultsSection) resultsSection.classList.remove("hidden");
 }
 
-readingTab.addEventListener("click", showReadingSection);
-quizTab.addEventListener("click", showQuizCategoriesSection);
-startQuizBtn.addEventListener("click", showQuizCategoriesSection);
+// --- Verificar se usuário já está logado (ao carregar a página) ---
+const storedUser = localStorage.getItem("cyberUser");
+console.log("Initial check for storedUser:", storedUser);
+if (storedUser) {
+    showAppScreen(storedUser);
+    showReadingSection(); // Padrão para a seção de leitura após login
+} else {
+    showLoginScreen(); // Padrão para a tela de login se não estiver logado
+}
 
-// Quiz Data (Simplified - Expand with more questions and categories)
+// --- Lógica do Quiz (mantida como estava, com as perguntas atualizadas) ---
 const quizData = {
     fundamentos: [
         { question: "O que é cibersegurança?", options: ["Proteger apenas computadores", "Proteger sistemas, redes e programas de ataques digitais", "Apenas sobre vírus", "Usar senhas fáceis"], answer: 1, explanation: "Cibersegurança é a prática de proteger sistemas, redes e programas de ataques digitais." },
@@ -108,7 +277,9 @@ const quizData = {
         { question: "O que é autenticação de dois fatores (2FA)?", options: ["Usar duas senhas diferentes", "Uma camada extra de segurança além da senha", "Autenticar duas vezes ao dia", "Um tipo de firewall"], answer: 1, explanation: "2FA adiciona uma segunda forma de verificação, como um código enviado ao celular, para aumentar a segurança." },
         { question: "Por que é importante manter o software atualizado?", options: ["Para ter novos recursos visuais", "Para corrigir bugs e vulnerabilidades de segurança", "Para tornar o software mais rápido", "Não é tão importante"], answer: 1, explanation: "Atualizações frequentemente incluem correções para falhas de segurança que podem ser exploradas por atacantes." },
         { question: "O que fazer ao receber um e-mail com link suspeito?", options: ["Clicar para investigar", "Responder pedindo mais informações", "Excluir o e-mail sem clicar no link", "Encaminhar para amigos"], answer: 2, explanation: "Nunca clique em links suspeitos. Verifique o remetente e, na dúvida, exclua o e-mail." },
-        { question: "Qual a principal desvantagem de usar Wi-Fi público sem proteção?", options: ["Velocidade lenta", "Anúncios excessivos", "Risco de interceptação de dados", "Limitação de tempo de uso"], answer: 2, explanation: "Redes Wi-Fi públicas não seguras podem permitir que hackers interceptem seus dados." }
+        { question: "Qual a principal desvantagem de usar Wi-Fi público sem proteção?", options: ["Velocidade lenta", "Anúncios excessivos", "Risco de interceptação de dados", "Limitação de tempo de uso"], answer: 2, explanation: "Redes Wi-Fi públicas não seguras podem permitir que hackers interceptem seus dados." },
+        { question: "O que são 'vulnerabilidades Zero-Day'?", options: ["Falhas de segurança que não têm correção disponível", "Vulnerabilidades que só existem no primeiro dia de uso de um software", "Sistemas que nunca foram atacados", "Softwares 100% seguros"], answer: 0, explanation: "Vulnerabilidades Zero-Day são falhas recém-descobertas pelos fabricantes e que ainda não possuem uma correção (patch) oficial, tornando-as muito perigosas." },
+        { question: "Qual o conceito da Tríade CIA em segurança da informação?", options: ["Controle, Investigação, Ação", "Confidencialidade, Integridade, Disponibilidade", "Criptografia, Identificação, Autenticação", "Computador, Internet, Acesso"], answer: 1, explanation: "A Tríade CIA (Confidentiality, Integrity, Availability) representa os três pilares fundamentais da segurança da informação: Confidencialidade, Integridade e Disponibilidade." }
     ],
     ameacas: [
         { question: "Qual tipo de malware se disfarça de software legítimo?", options: ["Vírus", "Worm", "Cavalo de Troia (Trojan)", "Spyware"], answer: 2, explanation: "Cavalos de Troia se passam por programas úteis para enganar o usuário e infectar o sistema." },
@@ -132,7 +303,11 @@ const quizData = {
         { question: "Ao usar um computador público, o que você deve sempre fazer ao terminar?", options: ["Deixar suas contas logadas para facilitar o próximo usuário", "Desligar o monitor", "Fazer logout de todas as suas contas e limpar o histórico de navegação", "Instalar seus programas favoritos"], answer: 2, explanation: "Sempre faça logout e limpe dados pessoais de computadores públicos para proteger sua privacidade." },
         { question: "O que significa HTTPS no início de um endereço web?", options: ["Hipertexto Transfer Protocol Seguro, indica uma conexão criptografada", "Site de Alta Performance e Tecnologia", "Host Transfer Protocol Standard", "Um site que não usa cookies"], answer: 0, explanation: "HTTPS indica que a comunicação entre seu navegador e o site é criptografada, tornando-a mais segura." },
         { question: "Qual o risco de conectar um pendrive desconhecido ao seu computador?", options: ["Nenhum, pendrives são sempre seguros", "Pode conter malware que infectará seu dispositivo", "Pode apagar seus arquivos", "Pode melhorar o desempenho do PC"], answer: 1, explanation: "Pendrives desconhecidos podem estar infectados com malware e comprometer seu sistema." },
-        { question: "Por que é arriscado baixar software de fontes não oficiais?", options: ["O software pode ser mais caro", "Pode vir com malware embutido ou ser uma versão pirata com falhas", "Leva mais tempo para baixar", "Não há risco"], answer: 1, explanation: "Software de fontes não confiáveis frequentemente contém malware ou não possui as atualizações de segurança necessárias." }
+        { question: "Por que é arriscado baixar software de fontes não oficiais?", options: ["O software pode ser mais caro", "Pode vir com malware embutido ou ser uma versão pirata com falhas", "Leva mais tempo para baixar", "Não há risco"], answer: 1, explanation: "Software de fontes não confiáveis frequentemente contém malware ou não possui as atualizações de segurança necessárias." },
+        { question: "O que é um 'patch' de segurança?", options: ["Um adesivo para cobrir a webcam", "Uma correção de software para uma vulnerabilidade conhecida", "Um tipo de programa de antivírus", "Uma senha muito forte"], answer: 1, explanation: "Um patch é uma atualização de software projetada para corrigir bugs ou vulnerabilidades de segurança." },
+        { question: "Qual a melhor forma de descartar um HD antigo contendo dados sensíveis?", options: ["Simplesmente jogá-lo no lixo comum", "Formatar o HD uma vez", "Destruição física do HD ou uso de software de limpeza de dados seguro", "Vender o HD como está"], answer: 2, explanation: "Para garantir que dados sensíveis não sejam recuperados, a destruição física ou o uso de software especializado para apagar dados de forma segura são recomendados." },
+        { question: "O que é 'shoulder surfing'?", options: ["Um esporte aquático", "Observar discretamente alguém digitando informações confidenciais", "Navegar na internet anonimamente", "Um tipo de ataque de rede"], answer: 1, explanation: "Shoulder surfing é a prática de espionar por cima do ombro de alguém para obter informações como senhas ou PINs." },
+        { question: "Por que é importante ter cuidado com as permissões concedidas a aplicativos móveis?", options: ["Para economizar bateria", "Aplicativos podem solicitar acesso a dados e funcionalidades desnecessárias, comprometendo a privacidade", "Para liberar espaço de armazenamento", "Não é importante, todos os apps são seguros"], answer: 1, explanation: "Muitos aplicativos pedem mais permissões do que precisam, o que pode levar à coleta excessiva de dados e riscos à privacidade." }
     ],
     empresarial: [
         { question: "O que é um firewall em um ambiente corporativo?", options: ["Um sistema de alarme de incêndio", "Uma barreira que controla o tráfego de rede entre redes internas e externas", "Um software para apagar arquivos", "Um tipo de impressora de rede"], answer: 1, explanation: "Firewalls monitoram e filtram o tráfego de rede com base em regras de segurança para proteger a rede interna." },
@@ -144,7 +319,9 @@ const quizData = {
         { question: "Qual a finalidade de um Plano de Continuidade de Negócios (PCN)?", options: ["Garantir que a empresa continue operando durante e após um desastre", "Planejar as férias dos funcionários", "Aumentar as vendas da empresa", "Criar novos produtos"], answer: 0, explanation: "O PCN visa garantir a resiliência operacional da empresa diante de interrupções significativas." },
         { question: "O que é 'Zero Trust' como modelo de segurança?", options: ["Confiar em todos os usuários e dispositivos por padrão", "Nunca confiar, sempre verificar cada acesso, independentemente da origem", "Confiar apenas em dispositivos dentro da rede da empresa", "Não usar senhas"], answer: 1, explanation: "O modelo Zero Trust parte do princípio de que ameaças podem existir tanto fora quanto dentro da rede, exigindo verificação contínua." },
         { question: "Qual o papel da criptografia na segurança de dados corporativos?", options: ["Tornar os dados mais fáceis de ler", "Proteger a confidencialidade dos dados, tornando-os ilegíveis para quem não tem a chave", "Aumentar o tamanho dos arquivos", "Detectar vírus"], answer: 1, explanation: "A criptografia transforma dados em um formato ilegível para proteger sua confidencialidade contra acesso não autorizado." },
-        { question: "O que é um 'incidente de segurança' em uma empresa?", options: ["Um funcionário chegando atrasado", "Qualquer evento que comprometa a confidencialidade, integridade ou disponibilidade dos dados ou sistemas", "Uma queda de energia", "Uma impressora quebrada"], answer: 1, explanation: "Um incidente de segurança é uma violação ou ameaça iminente de violação das políticas de segurança da informação." }
+        { question: "O que é um 'incidente de segurança' em uma empresa?", options: ["Um funcionário chegando atrasado", "Qualquer evento que comprometa a confidencialidade, integridade ou disponibilidade dos dados ou sistemas", "Uma queda de energia", "Uma impressora quebrada"], answer: 1, explanation: "Um incidente de segurança é uma violação ou ameaça iminente de violação das políticas de segurança da informação." },
+        { question: "O que é um IDS (Intrusion Detection System)?", options: ["Um sistema que impede todas as intrusões", "Um sistema que detecta atividades suspeitas ou maliciosas na rede ou em um host", "Um software para instalar programas", "Um dispositivo de armazenamento seguro"], answer: 1, explanation: "Um IDS monitora o tráfego de rede ou atividades em um sistema para identificar possíveis ameaças e alertar os administradores." },
+        { question: "Qual a diferença entre um IDS e um IPS (Intrusion Prevention System)?", options: ["Não há diferença, são a mesma coisa", "IDS apenas detecta, enquanto IPS pode detectar e bloquear ativamente as ameaças", "IPS é mais antigo que IDS", "IDS é para redes pequenas, IPS para grandes empresas"], answer: 1, explanation: "Enquanto um IDS (Sistema de Detecção de Intrusão) apenas alerta sobre ameaças, um IPS (Sistema de Prevenção de Intrusão) pode tomar medidas para bloquear ativamente essas ameaças." }
     ],
     lgpd: [
         { question: "O que significa a sigla LGPD?", options: ["Lei Geral de Proteção de Documentos", "Lei Geral de Proteção de Dados Pessoais", "Lei Global de Privacidade Digital", "Liga Geral de Programadores Dedicados"], answer: 1, explanation: "LGPD é a Lei Geral de Proteção de Dados Pessoais, que regula o tratamento de dados pessoais no Brasil." },
@@ -152,13 +329,23 @@ const quizData = {
         { question: "Quem é o 'titular' dos dados segundo a LGPD?", options: ["A empresa que coleta os dados", "O governo", "A pessoa natural a quem se referem os dados pessoais", "O encarregado de dados (DPO)"], answer: 2, explanation: "O titular é a pessoa física a quem os dados se referem." },
         { question: "O que é 'consentimento' no contexto da LGPD?", options: ["Uma ordem judicial para coletar dados", "Manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados para uma finalidade determinada", "Um contrato de trabalho", "Uma taxa paga pela empresa"], answer: 1, explanation: "O consentimento é uma das bases legais para o tratamento de dados, e deve ser dado de forma clara e específica pelo titular." },
         { question: "Qual o papel do Encarregado de Proteção de Dados (DPO)?", options: ["Vender os dados da empresa", "Atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD)", "Desenvolver software de segurança", "Investigar crimes cibernéticos"], answer: 1, explanation: "O DPO é o responsável por orientar sobre as práticas de proteção de dados e ser o ponto de contato com titulares e a ANPD." },
-        { question: "Quais são alguns dos direitos dos titulares previstos na LGPD?", options: ["Direito de vender seus dados para quem quiser", "Acesso aos dados, correção de dados incompletos, anonimização, eliminação dos dados", "Direito de invadir sistemas para verificar seus dados", "Apenas o direito de ser esquecido"], answer: 1, explanation: "A LGPD garante diversos direitos aos titulares, como acesso, retificação, cancelamento ou oposição ao tratamento de seus dados." }
+        { question: "Quais são alguns dos direitos dos titulares previstos na LGPD?", options: ["Direito de vender seus dados para quem quiser", "Acesso aos dados, correção de dados incompletos, anonimização, eliminação dos dados", "Direito de invadir sistemas para verificar seus dados", "Apenas o direito de ser esquecido"], answer: 1, explanation: "A LGPD garante diversos direitos aos titulares, como acesso, retificação, cancelamento ou oposição ao tratamento de seus dados." },
+        { question: "O que é um 'Relatório de Impacto à Proteção de Dados Pessoais' (RIPD)?", options: ["Um relatório sobre o impacto financeiro de um vazamento de dados", "Documentação do controlador que contém a descrição dos processos de tratamento de dados pessoais que podem gerar riscos às liberdades civis e aos direitos fundamentais", "Um formulário para solicitar a exclusão de dados", "Uma lista de empresas que cumprem a LGPD"], answer: 1, explanation: "O RIPD é um documento exigido pela LGPD para operações de tratamento de dados que apresentam alto risco, detalhando medidas para mitigar esses riscos." },
+        { question: "A LGPD se aplica apenas a dados online?", options: ["Sim, apenas dados em formato digital", "Não, aplica-se a qualquer operação de tratamento de dados pessoais, inclusive em meios físicos", "Sim, e apenas para grandes empresas de tecnologia", "Não, mas foca principalmente em redes sociais"], answer: 1, explanation: "A LGPD abrange o tratamento de dados pessoais em qualquer formato, seja digital ou físico." },
+        { question: "O que são 'dados sensíveis' de acordo com a LGPD?", options: ["Qualquer dado pessoal", "Dados sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico", "Apenas dados financeiros", "Senhas e nomes de usuário"], answer: 1, explanation: "Dados sensíveis são aqueles que, por sua natureza, podem gerar discriminação e, por isso, recebem proteção especial da LGPD." },
+        { question: "Qual a sanção mais severa prevista na LGPD para o descumprimento da lei?", options: ["Advertência simples", "Multa de até 2% do faturamento da empresa no Brasil, limitada a R$ 50 milhões por infração", "Publicização da infração", "Bloqueio dos dados pessoais a que se refere a infração"], answer: 1, explanation: "A LGPD prevê multas significativas para empresas que não cumprirem suas disposições, podendo chegar a 2% do faturamento, com teto de R$ 50 milhões por infração." }
     ],
     carreira: [
         { question: "Qual destas NÃO é uma carreira comum em cibersegurança?", options: ["Analista de Segurança", "Engenheiro de Software Focado em IA", "Hacker Ético (Pentester)", "Consultor de Segurança"], answer: 1, explanation: "Embora IA possa ser usada em cibersegurança, 'Engenheiro de Software Focado em IA' é uma carreira mais ampla em desenvolvimento de IA, não especificamente cibersegurança." },
         { question: "Qual certificação é conhecida por focar em hacking ético?", options: ["CISSP", "CompTIA Security+", "CEH (Certified Ethical Hacker)", "CISM"], answer: 2, explanation: "A CEH é uma certificação popular para profissionais que desejam se especializar em testes de penetração e hacking ético." },
         { question: "Que tipo de habilidade é crucial para um analista de segurança além do conhecimento técnico?", options: ["Habilidade de cozinhar", "Pensamento crítico e resolução de problemas", "Habilidade de tocar um instrumento musical", "Conhecimento de jardinagem"], answer: 1, explanation: "Analistas de segurança precisam ser capazes de analisar situações complexas, identificar padrões e resolver problemas de forma eficaz." },
-        { question: "O que um especialista em forense digital faz?", options: ["Previne ataques antes que aconteçam", "Investiga incidentes de segurança e crimes cibernéticos, coletando e analisando evidências digitais", "Desenvolve políticas de segurança", "Gerencia firewalls"], answer: 1, explanation: "Especialistas em forense digital são como detetives do mundo digital, recuperando dados e investigando a origem e o impacto de incidentes." }
+        { question: "O que um especialista em forense digital faz?", options: ["Previne ataques antes que aconteçam", "Investiga incidentes de segurança e crimes cibernéticos, coletando e analisando evidências digitais", "Desenvolve políticas de segurança", "Gerencia firewalls"], answer: 1, explanation: "Especialistas em forense digital são como detetives do mundo digital, recuperando dados e investigando a origem e o impacto de incidentes." },
+        { question: "Qual o papel de um CISO (Chief Information Security Officer) em uma organização?", options: ["Desenvolver código para aplicações seguras", "Liderar e gerenciar a estratégia de segurança da informação da empresa", "Realizar testes de penetração diários", "Vender soluções de segurança para clientes"], answer: 1, explanation: "O CISO é o executivo responsável por estabelecer e manter a visão, estratégia e programa para garantir que os ativos de informação e tecnologias sejam adequadamente protegidos." },
+        { question: "O que é 'threat hunting' (caça a ameaças)?", options: ["Uma técnica de pesca esportiva", "Um processo proativo de busca por atividades maliciosas não detectadas nos sistemas e redes", "Desenvolver novas ferramentas de antivírus", "Responder a alertas de segurança já gerados"], answer: 1, explanation: "Threat hunting é uma abordagem proativa onde analistas buscam ativamente por sinais de comprometimento que podem ter passado despercebidos pelas defesas automatizadas." },
+        { question: "Qual a importância de 'soft skills' como comunicação e trabalho em equipe para profissionais de cibersegurança?", options: ["São irrelevantes, apenas habilidades técnicas importam", "São cruciais para explicar riscos complexos, colaborar em investigações e educar usuários", "Apenas para cargos de gerência", "Ajudam a conseguir um salário maior, mas não no trabalho diário"], answer: 1, explanation: "Soft skills são essenciais para que profissionais de cibersegurança possam comunicar efetivamente os riscos, trabalhar em equipe durante incidentes e promover uma cultura de segurança." },
+        { question: "Qual destas áreas de cibersegurança foca na proteção de sistemas de controle industrial (ICS) e SCADA?", options: ["Segurança de Aplicações Web", "Segurança em Nuvem", "Segurança OT (Tecnologia Operacional)", "Segurança de Redes Wireless"], answer: 2, explanation: "A Segurança OT (Operational Technology) é especializada na proteção de sistemas que controlam processos industriais, como SCADA e ICS, que têm requisitos e riscos distintos da TI tradicional." },
+        { question: "O que é um SOC (Security Operations Center)?", options: ["Um tipo de software de criptografia", "Uma equipe centralizada responsável por monitorar, detectar, analisar e responder a incidentes de segurança cibernética", "Um padrão de segurança para sites de e-commerce", "Um local físico onde se guardam servidores"], answer: 1, explanation: "Um SOC é o centro nervoso da defesa cibernética de uma organização, operando 24/7 para proteger contra ameaças." },
+        { question: "Qual a diferença entre 'Red Team' e 'Blue Team' em exercícios de segurança?", options: ["Red Team ataca, Blue Team defende", "Red Team usa software vermelho, Blue Team usa azul", "Red Team foca em hardware, Blue Team em software", "São apenas nomes diferentes para a mesma equipe"], answer: 0, explanation: "Em simulações de segurança, o Red Team simula atacantes tentando comprometer os sistemas, enquanto o Blue Team é responsável por defender e responder a esses ataques." }
     ]
 };
 
@@ -182,30 +369,34 @@ const retryBtn = document.getElementById("retry-btn");
 const backToReadingBtn = document.getElementById("back-to-reading");
 const quizCategoriesDisplay = document.getElementById("quiz-categories-display");
 
-// Category Selection
+// --- Seleção de Categoria do Quiz ---
 const categoryBtns = document.querySelectorAll(".category-btn");
-categoryBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-        btn.classList.toggle("ring-2");
-        btn.classList.toggle("ring-blue-500");
-        btn.classList.toggle("bg-blue-100"); // Visual feedback for selection
-        const category = btn.dataset.category;
-        if (selectedCategories.includes(category)) {
-            selectedCategories = selectedCategories.filter(c => c !== category);
-        } else {
-            selectedCategories.push(category);
-        }
+if (categoryBtns) {
+    categoryBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("ring-2");
+            btn.classList.toggle("ring-blue-500");
+            btn.classList.toggle("bg-blue-100");
+            const category = btn.dataset.category;
+            if (selectedCategories.includes(category)) {
+                selectedCategories = selectedCategories.filter(c => c !== category);
+            } else {
+                selectedCategories.push(category);
+            }
+        });
     });
-});
+}
 
-startSelectedQuizBtn.addEventListener("click", () => {
-    if (selectedCategories.length === 0) {
-        alert("Por favor, selecione pelo menos uma categoria para o quiz.");
-        return;
-    }
-    loadSelectedQuestions();
-    startQuiz();
-});
+if (startSelectedQuizBtn) {
+    startSelectedQuizBtn.addEventListener("click", () => {
+        if (selectedCategories.length === 0) {
+            alert("Por favor, selecione pelo menos uma categoria para o quiz.");
+            return;
+        }
+        loadSelectedQuestions();
+        startQuiz();
+    });
+}
 
 function loadSelectedQuestions() {
     currentQuestions = [];
@@ -214,10 +405,11 @@ function loadSelectedQuestions() {
             currentQuestions = currentQuestions.concat(quizData[category]);
         }
     });
-    // Shuffle questions for variety
-    currentQuestions.sort(() => Math.random() - 0.5);
-    const categoryNames = selectedCategories.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ");
-    quizCategoriesDisplay.textContent = `Categorias: ${categoryNames}`;
+    currentQuestions.sort(() => Math.random() - 0.5); // Shuffle questions
+    if (quizCategoriesDisplay) {
+        const categoryNames = selectedCategories.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ");
+        quizCategoriesDisplay.textContent = `Categorias: ${categoryNames}`;
+    }
 }
 
 function startQuiz() {
@@ -230,6 +422,7 @@ function startQuiz() {
 }
 
 function displayQuestion() {
+    if (!quizContainer || !currentQuestions[currentQuestionIndex]) return;
     const questionData = currentQuestions[currentQuestionIndex];
     quizContainer.innerHTML = `
         <div class="quiz-card bg-white p-6 rounded-lg shadow-md mb-6">
@@ -252,60 +445,66 @@ function displayQuestion() {
             userAnswers[currentQuestionIndex] = parseInt(radio.value);
         });
     });
-
     updateNavigationButtons();
 }
 
 function updateNavigationButtons() {
-    prevBtn.classList.toggle("hidden", currentQuestionIndex === 0);
-    nextBtn.classList.toggle("hidden", currentQuestionIndex === currentQuestions.length - 1);
-    finishBtn.classList.toggle("hidden", currentQuestionIndex !== currentQuestions.length - 1);
+    if(prevBtn) prevBtn.classList.toggle("hidden", currentQuestionIndex === 0);
+    if(nextBtn) nextBtn.classList.toggle("hidden", currentQuestionIndex === currentQuestions.length - 1 || currentQuestions.length === 0);
+    if(finishBtn) finishBtn.classList.toggle("hidden", currentQuestionIndex !== currentQuestions.length - 1 || currentQuestions.length === 0);
 }
 
 function updateProgress() {
+    if (!progressBar || !progressText || currentQuestions.length === 0) return;
     const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
     progressBar.style.width = `${progress}%`;
     progressText.textContent = `${currentQuestionIndex + 1}/${currentQuestions.length}`;
 }
 
-prevBtn.addEventListener("click", () => {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        displayQuestion();
-        updateProgress();
-    }
-});
+if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            displayQuestion();
+            updateProgress();
+        }
+    });
+}
 
-nextBtn.addEventListener("click", () => {
-    if (!userAnswers.hasOwnProperty(currentQuestionIndex)) {
-        alert("Por favor, selecione uma resposta.");
-        return;
-    }
-    if (currentQuestionIndex < currentQuestions.length - 1) {
-        currentQuestionIndex++;
-        displayQuestion();
-        updateProgress();
-    }
-});
+if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        if (!userAnswers.hasOwnProperty(currentQuestionIndex)) {
+            alert("Por favor, selecione uma resposta.");
+            return;
+        }
+        if (currentQuestionIndex < currentQuestions.length - 1) {
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
+        }
+    });
+}
 
-finishBtn.addEventListener("click", () => {
-    if (!userAnswers.hasOwnProperty(currentQuestionIndex)) {
-        alert("Por favor, selecione uma resposta para a última pergunta.");
-        return;
-    }
-    calculateResults();
-    showResultsSection();
-});
+if (finishBtn) {
+    finishBtn.addEventListener("click", () => {
+        if (!userAnswers.hasOwnProperty(currentQuestionIndex) && currentQuestions.length > 0) {
+            alert("Por favor, selecione uma resposta para a última pergunta.");
+            return;
+        }
+        calculateResults();
+        showResultsSection();
+    });
+}
 
 function calculateResults() {
     let score = 0;
     let categoryScores = {};
     selectedCategories.forEach(cat => categoryScores[cat] = { correct: 0, total: 0 });
-    wrongAnswersContainer.innerHTML = "<h3 class='text-xl font-semibold text-red-700 mb-4'>Respostas Incorretas e Explicações:</h3>";
+    if(wrongAnswersContainer) wrongAnswersContainer.innerHTML = "<h3 class='text-xl font-semibold text-red-700 mb-4'>Respostas Incorretas e Explicações:</h3>";
     let hasWrongAnswers = false;
 
     currentQuestions.forEach((q, index) => {
-        const questionCategory = selectedCategories.find(cat => quizData[cat].includes(q));
+        const questionCategory = selectedCategories.find(cat => quizData[cat] && quizData[cat].includes(q));
         if (questionCategory) {
             categoryScores[questionCategory].total++;
         }
@@ -317,43 +516,49 @@ function calculateResults() {
             }
         } else {
             hasWrongAnswers = true;
-            wrongAnswersContainer.innerHTML += `
-                <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <p class="font-semibold text-gray-800"><strong>Questão ${index + 1}:</strong> ${q.question}</p>
-                    <p class="text-red-600"><strong>Sua resposta:</strong> ${q.options[userAnswers[index]] || "Não respondida"}</p>
-                    <p class="text-green-600"><strong>Resposta correta:</strong> ${q.options[q.answer]}</p>
-                    <p class="text-sm text-gray-600 mt-1"><strong>Explicação:</strong> ${q.explanation}</p>
-                </div>
-            `;
+            if(wrongAnswersContainer) {
+                wrongAnswersContainer.innerHTML += `
+                    <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <p class="font-semibold text-gray-800"><strong>Questão ${index + 1}:</strong> ${q.question}</p>
+                        <p class="text-red-600"><strong>Sua resposta:</strong> ${q.options[userAnswers[index]] || "Não respondida"}</p>
+                        <p class="text-green-600"><strong>Resposta correta:</strong> ${q.options[q.answer]}</p>
+                        <p class="text-sm text-gray-600 mt-1"><strong>Explicação:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            }
         }
     });
 
-    scoreDisplay.textContent = score;
-    document.getElementById("score").nextElementSibling.textContent = `/${currentQuestions.length}`;
-
-    categoryResultsContainer.innerHTML = "";
-    for (const category in categoryScores) {
-        const { correct, total } = categoryScores[category];
-        if (total > 0) {
-            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
-            categoryResultsContainer.innerHTML += `
-                <div class="flex justify-between items-center text-sm">
-                    <span class="text-gray-700">${category.charAt(0).toUpperCase() + category.slice(1)}:</span>
-                    <span class="font-medium ${percentage >= 70 ? "text-green-600" : percentage >= 40 ? "text-yellow-600" : "text-red-600"}">${correct}/${total} (${percentage}%)</span>
-                </div>
-            `;
+    if(scoreDisplay) scoreDisplay.textContent = score;
+    if(document.getElementById("score") && document.getElementById("score").nextElementSibling) {
+        document.getElementById("score").nextElementSibling.textContent = `/${currentQuestions.length}`;
+    }
+    
+    if(categoryResultsContainer) {
+        categoryResultsContainer.innerHTML = "";
+        for (const category in categoryScores) {
+            const { correct, total } = categoryScores[category];
+            if (total > 0) {
+                const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+                categoryResultsContainer.innerHTML += `
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-gray-700">${category.charAt(0).toUpperCase() + category.slice(1)}:</span>
+                        <span class="font-medium ${percentage >= 70 ? "text-green-600" : percentage >= 40 ? "text-yellow-600" : "text-red-600"}">${correct}/${total} (${percentage}%)</span>
+                    </div>
+                `;
+            }
         }
     }
 
     const quizEndTime = new Date();
-    const timeTaken = Math.floor((quizEndTime - quizStartTime) / 1000); // in seconds
+    const timeTaken = Math.floor((quizEndTime - quizStartTime) / 1000);
     const minutes = Math.floor(timeTaken / 60);
     const seconds = timeTaken % 60;
-    document.getElementById("quiz-time").textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    if(document.getElementById("quiz-time")) document.getElementById("quiz-time").textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
     let message = "";
     let messageClass = "";
-    const percentageScore = (score / currentQuestions.length) * 100;
+    const percentageScore = currentQuestions.length > 0 ? (score / currentQuestions.length) * 100 : 0;
     if (percentageScore >= 80) {
         message = "Excelente! Você demonstrou um ótimo conhecimento em cibersegurança!";
         messageClass = "bg-green-100 text-green-800";
@@ -367,43 +572,37 @@ function calculateResults() {
         message = "Não desanime! A cibersegurança é um campo vasto. Revise o material e tente novamente.";
         messageClass = "bg-red-100 text-red-800";
     }
-    scoreMessageContainer.textContent = message;
-    scoreMessageContainer.className = `max-w-2xl mx-auto mb-8 p-4 rounded-lg ${messageClass}`;
+    if(scoreMessageContainer) {
+        scoreMessageContainer.textContent = message;
+        scoreMessageContainer.className = `max-w-2xl mx-auto mb-8 p-4 rounded-lg ${messageClass}`;
+    }
 
-    if (!hasWrongAnswers) {
+    if (!hasWrongAnswers && wrongAnswersContainer) {
         wrongAnswersContainer.innerHTML = '<p class="text-green-600 font-semibold">Parabéns! Você acertou todas as questões!</p>';
     }
 }
 
 function resetQuiz() {
     selectedCategories = [];
-    categoryBtns.forEach(btn => {
-        btn.classList.remove("ring-2", "ring-blue-500", "bg-blue-100");
+    if(categoryBtns) {
+        categoryBtns.forEach(btn => {
+            btn.classList.remove("ring-2", "ring-blue-500", "bg-blue-100");
+        });
+    }
+    // Não chama showQuizCategoriesSection() diretamente aqui para evitar conflito com logout
+}
+
+if (retryBtn) {
+    retryBtn.addEventListener("click", () => {
+        showQuizCategoriesSection(); // Agora o usuário volta para a seleção de categorias
     });
-    showQuizCategoriesSection();
 }
 
-retryBtn.addEventListener("click", () => {
-    // Go back to category selection, keeping selected categories
-    showQuizCategoriesSection();
-});
-
-backToReadingBtn.addEventListener("click", () => {
-    resetQuiz(); // Clear selected categories as well
-    showReadingSection();
-});
-
-// Initial setup
-showReadingSection(); // Show reading section by default if not logged in or no quiz in progress
-if (storedUser) {
-    // If user was logged in, keep them on the app screen, default to reading
-    loginScreen.classList.add("hidden");
-    appScreen.classList.remove("hidden");
-    usernameDisplay.textContent = storedUser;
-    usernameDisplay.classList.remove("hidden");
-    showReadingSection();
-} else {
-    loginScreen.classList.remove("hidden");
-    appScreen.classList.add("hidden");
+if (backToReadingBtn) {
+    backToReadingBtn.addEventListener("click", () => {
+        resetQuiz(); 
+        showReadingSection();
+    });
 }
+console.log("Script execution finished initial setup.");
 
