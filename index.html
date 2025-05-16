@@ -152,6 +152,7 @@
             <div class="flex border-b border-gray-200 mb-8">
                 <button id="reading-tab" class="px-6 py-3 font-medium text-blue-600 border-b-2 border-blue-600">Leitura</button>
                 <button id="quiz-tab" class="px-6 py-3 font-medium text-gray-500 hover:text-gray-700">Quiz</button>
+                <button id="about-tab" class="px-6 py-3 font-medium text-gray-500 hover:text-gray-700">Sobre Nós</button>
             </div>
             
             <!-- Reading Section -->
@@ -248,54 +249,38 @@
                     <ul class="list-disc pl-6 mb-4 space-y-2 text-gray-700">
                         <li><strong>Configurações de privacidade:</strong> Ajuste cuidadosamente as configurações em redes sociais e serviços online para limitar quem pode ver suas informações.</li>
                         <li><strong>Compartilhamento mínimo:</strong> Pense duas vezes antes de compartilhar informações pessoais como endereço, data de nascimento completa ou detalhes financeiros.</li>
-                        <li><strong>Criptografia:</strong> Use criptografia para dados sensíveis, tanto em trânsito (HTTPS, VPN) quanto em repouso (criptografia de disco).</li>
-                        <li><strong>LGPD:</strong> Conheça seus direitos sob a Lei Geral de Proteção de Dados, incluindo acesso, correção e exclusão de dados pessoais.</li>
-                        <li><strong>Exclusão de contas:</strong> Quando parar de usar um serviço, exclua sua conta em vez de apenas desinstalar o aplicativo.</li>
+                        <li><strong>Verificação de permissões:</strong> Revise regularmente as permissões de aplicativos em seus dispositivos e remova aqueles que não usa mais.</li>
+                        <li><strong>Criptografia:</strong> Use criptografia para proteger dados sensíveis, especialmente em dispositivos móveis que podem ser perdidos ou roubados.</li>
                     </ul>
-                    <div class="highlight mb-4">
-                        <p class="font-medium">Dica profissional:</p>
-                        <p>Considere usar aliases de e-mail ou serviços de máscara de e-mail para cadastros online, mantendo seu e-mail principal privado.</p>
+                    <div class="warning-box p-4 rounded">
+                        <h4 class="text-lg font-semibold text-red-800 mb-2"><i class="fas fa-exclamation-circle mr-2"></i>Lembre-se</h4>
+                        <p class="text-gray-700">Uma vez que informações pessoais são expostas online, pode ser extremamente difícil ou impossível removê-las completamente. Pense antes de compartilhar.</p>
                     </div>
                 </article>
                 
                 <article class="mb-10">
-                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">5. Cibersegurança no Ambiente Corporativo</h3>
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">5. Segurança em Dispositivos Móveis</h3>
                     <p class="mb-4 text-gray-700 leading-relaxed">
-                        Nas empresas, a cibersegurança requer abordagens adicionais e políticas formais:
+                        Smartphones e tablets contêm uma quantidade significativa de dados pessoais e são frequentemente alvos de ataques. Proteja seus dispositivos móveis com estas práticas:
                     </p>
-                    <div class="grid md:grid-cols-3 gap-4 mb-4">
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h4 class="font-semibold text-blue-700 mb-2"><i class="fas fa-fire-extinguisher mr-2"></i>Firewalls</h4>
-                            <p class="text-sm text-gray-600">Barreiras que monitoram e controlam o tráfego de rede entre redes internas e externas, seguindo regras de segurança definidas.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow">
+                            <h4 class="text-xl font-semibold text-blue-600 mb-2"><i class="fas fa-lock mr-2"></i>Bloqueio de Tela</h4>
+                            <p class="text-gray-700">Configure um PIN forte, senha, padrão ou biometria (impressão digital, reconhecimento facial) para desbloquear seu dispositivo.</p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h4 class="font-semibold text-blue-700 mb-2"><i class="fas fa-chart-line mr-2"></i>SIEM</h4>
-                            <p class="text-sm text-gray-600">Sistemas de gerenciamento e correlação de eventos de segurança que agregam e analisam logs de diversas fontes para detectar ameaças.</p>
+                        <div class="bg-white p-5 rounded-lg shadow">
+                            <h4 class="text-xl font-semibold text-blue-600 mb-2"><i class="fas fa-download mr-2"></i>Fontes Confiáveis</h4>
+                            <p class="text-gray-700">Baixe aplicativos apenas de lojas oficiais (Google Play, App Store). Verifique avaliações e permissões solicitadas antes de instalar.</p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h4 class="font-semibold text-blue-700 mb-2"><i class="fas fa-graduation-cap mr-2"></i>Treinamento</h4>
-                            <p class="text-sm text-gray-600">Capacitação contínua dos colaboradores em segurança da informação, incluindo simulações de phishing e boas práticas.</p>
+                        <div class="bg-white p-5 rounded-lg shadow">
+                            <h4 class="text-xl font-semibold text-blue-600 mb-2"><i class="fas fa-shield-virus mr-2"></i>Antivírus Mobile</h4>
+                            <p class="text-gray-700">Considere instalar uma solução de segurança confiável que possa detectar malware e verificar aplicativos suspeitos.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow">
+                            <h4 class="text-xl font-semibold text-blue-600 mb-2"><i class="fas fa-location-arrow mr-2"></i>Rastreamento e Limpeza Remota</h4>
+                            <p class="text-gray-700">Ative recursos como "Encontre Meu Dispositivo" (Android) ou "Buscar iPhone" (iOS) para localizar, bloquear ou apagar remotamente seu dispositivo se for perdido ou roubado.</p>
                         </div>
                     </div>
-                    
-                    <div class="grid md:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h4 class="font-semibold text-blue-700 mb-2"><i class="fas fa-user-shield mr-2"></i>Controle de Acesso</h4>
-                            <p class="text-sm text-gray-600">Princípio do menor privilégio, autenticação forte e revisão periódica de permissões para evitar acesso não autorizado.</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h4 class="font-semibold text-blue-700 mb-2"><i class="fas fa-file-contract mr-2"></i>Políticas de Segurança</h4>
-                            <p class="text-sm text-gray-600">Documentos formais que definem regras, responsabilidades e procedimentos para proteger os ativos de informação.</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h4 class="font-semibold text-blue-700 mb-2"><i class="fas fa-bug mr-2"></i>Testes de Penetração</h4>
-                            <p class="text-sm text-gray-600">Simulações de ataques realizadas por especialistas para identificar vulnerabilidades antes que criminosos as explorem.</p>
-                        </div>
-                    </div>
-                    
-                    <p class="text-gray-700">
-                        A implementação de um programa abrangente de segurança cibernética, incluindo plano de resposta a incidentes, continuidade de negócios e recuperação de desastres, é essencial para proteger os ativos digitais das organizações contra ameaças cada vez mais sofisticadas.
-                    </p>
                 </article>
                 
                 <article class="mb-10">
@@ -351,182 +336,127 @@
                             </div>
                             <h3 class="text-xl font-semibold text-blue-800">Fundamentos</h3>
                         </div>
-                        <p class="text-gray-600 text-sm">Conceitos básicos, terminologia e princípios essenciais de cibersegurança.</p>
-                        <div class="mt-4 text-right">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">10 questões</span>
-                        </div>
+                        <p class="text-gray-600">Conceitos básicos e introdução à cibersegurança</p>
                     </div>
                     
-                    <div class="category-btn bg-green-50 p-6 rounded-lg border-2 border-green-100 cursor-pointer" data-category="ameacas">
+                    <div class="category-btn bg-blue-50 p-6 rounded-lg border-2 border-blue-100 cursor-pointer" data-category="ameacas">
                         <div class="flex items-center mb-3">
-                            <div class="bg-green-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-bug text-green-600 text-xl"></i>
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-bug text-blue-600 text-xl"></i>
                             </div>
-                            <h3 class="text-xl font-semibold text-green-800">Ameaças</h3>
+                            <h3 class="text-xl font-semibold text-blue-800">Ameaças</h3>
                         </div>
-                        <p class="text-gray-600 text-sm">Tipos de malware, vetores de ataque e técnicas usadas por cibercriminosos.</p>
-                        <div class="mt-4 text-right">
-                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">12 questões</span>
-                        </div>
+                        <p class="text-gray-600">Tipos de ataques e vulnerabilidades comuns</p>
                     </div>
                     
-                    <div class="category-btn bg-yellow-50 p-6 rounded-lg border-2 border-yellow-100 cursor-pointer" data-category="protecao">
+                    <div class="category-btn bg-blue-50 p-6 rounded-lg border-2 border-blue-100 cursor-pointer" data-category="protecao">
                         <div class="flex items-center mb-3">
-                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-lock text-yellow-600 text-xl"></i>
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-lock text-blue-600 text-xl"></i>
                             </div>
-                            <h3 class="text-xl font-semibold text-yellow-800">Proteção Pessoal</h3>
+                            <h3 class="text-xl font-semibold text-blue-800">Proteção</h3>
                         </div>
-                        <p class="text-gray-600 text-sm">Boas práticas para proteger seus dispositivos, contas e dados pessoais.</p>
-                        <div class="mt-4 text-right">
-                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">8 questões</span>
-                        </div>
-                    </div>
-                    
-                    <div class="category-btn bg-purple-50 p-6 rounded-lg border-2 border-purple-100 cursor-pointer" data-category="empresarial">
-                        <div class="flex items-center mb-3">
-                            <div class="bg-purple-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-building text-purple-600 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold text-purple-800">Segurança Corporativa</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm">Controles de segurança, políticas e práticas para ambientes empresariais.</p>
-                        <div class="mt-4 text-right">
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">10 questões</span>
-                        </div>
-                    </div>
-                    
-                    <div class="category-btn bg-red-50 p-6 rounded-lg border-2 border-red-100 cursor-pointer" data-category="lgpd">
-                        <div class="flex items-center mb-3">
-                            <div class="bg-red-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-gavel text-red-600 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold text-red-800">LGPD e Ética</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm">Lei Geral de Proteção de Dados, privacidade e aspectos éticos da segurança.</p>
-                        <div class="mt-4 text-right">
-                            <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">6 questões</span>
-                        </div>
-                    </div>
-                    
-                    <div class="category-btn bg-indigo-50 p-6 rounded-lg border-2 border-indigo-100 cursor-pointer" data-category="carreira">
-                        <div class="flex items-center mb-3">
-                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-user-tie text-indigo-600 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold text-indigo-800">Carreiras</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm">Oportunidades profissionais, certificações e habilidades necessárias na área.</p>
-                        <div class="mt-4 text-right">
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">4 questões</span>
-                        </div>
+                        <p class="text-gray-600">Medidas de segurança e boas práticas</p>
                     </div>
                 </div>
                 
                 <div class="text-center">
-                    <button id="start-selected-quiz" class="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg">
-                        Iniciar Quiz com Categorias Selecionadas
+                    <button id="start-selected-quiz" class="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg flex items-center justify-center mx-auto">
+                        <i class="fas fa-play-circle mr-2"></i> Iniciar Quiz com Categorias Selecionadas
                     </button>
                 </div>
             </section>
             
-            <!-- Quiz Section (initially hidden) -->
-            <section id="quiz-section" class="hidden bg-white rounded-lg shadow-lg p-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-blue-900">Quiz de Cibersegurança</h2>
-                    <p id="quiz-categories-display" class="text-gray-600 mt-2"></p>
-                </div>
+            <!-- Sobre Nós Section (initially hidden) -->
+            <section id="about-section" class="about-section rounded-lg shadow-md p-6 md:p-8 mb-12 hidden">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">Sobre Nós</h2>
                 
-                <div class="mb-6">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="font-medium text-gray-700">Progresso</span>
-                        <span id="progress-text" class="font-medium">1/50</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: 2%"></div>
-                    </div>
-                </div>
+                <p class="mb-6 text-gray-700 leading-relaxed">
+                    A CyberSecurity Academy é formada por uma equipe dedicada de profissionais em desenvolvimento que compartilham a paixão por segurança cibernética e educação. Nosso objetivo é tornar o conhecimento em cibersegurança acessível a todos, criando uma comunidade mais segura e consciente no ambiente digital.
+                </p>
                 
-                <div id="quiz-container">
-                    <!-- Questions will be dynamically inserted here -->
-                </div>
-                
-                <div class="flex justify-between mt-8">
-                    <button id="prev-btn" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400 transition hidden">
-                        <i class="fas fa-arrow-left mr-2"></i>Anterior
-                    </button>
-                    <button id="next-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition ml-auto">
-                        Próxima<i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                    <button id="finish-btn" class="px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition hidden">
-                        <i class="fas fa-check-circle mr-2"></i>Ver Resultado
-                    </button>
-                </div>
-            </section>
-            
-            <!-- Results Section (initially hidden) -->
-            <section id="results-section" class="hidden bg-white rounded-lg shadow-lg p-8 text-center">
-                <h2 class="text-3xl font-bold text-blue-900 mb-6">Resultado do Quiz</h2>
-                
-                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
-                    <div class="bg-blue-100 rounded-full p-8 w-48 h-48 flex items-center justify-center">
-                        <div>
-                            <span id="score" class="text-5xl font-bold text-blue-800">0</span>
-                            <span class="text-2xl text-blue-800">/50</span>
-                            <p class="text-blue-700 mt-2">pontos</p>
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <!-- Keli Ferreira -->
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-lg">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mb-4 md:mb-0">
+                                <i class="fas fa-user text-gray-400 text-5xl"></i>
+                                <!-- Espaço para foto: substituir o ícone acima por uma imagem -->
+                                <!-- <img src="caminho/para/foto-keli.jpg" alt="Keli Ferreira" class="w-full h-full object-cover"> -->
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-semibold text-blue-800 mb-2">Keli Ferreira</h3>
+                                <p class="text-blue-600 font-medium mb-3">Desenvolvedora</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Keli Ferreira é uma desenvolvedora talentosa e dedicada em nossa equipe. Atualmente cursando Gestão da Tecnologia da Informação (GTI), ela traz uma perspectiva única que combina habilidades técnicas com visão estratégica. Sua paixão por cibersegurança começou durante um workshop universitário sobre proteção de dados, e desde então tem se especializado em práticas seguras de desenvolvimento e proteção de aplicações web. Keli contribui significativamente para nossos projetos educacionais, tornando conceitos complexos de segurança acessíveis para iniciantes.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="text-left">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Desempenho por Categoria</h3>
-                            <div id="category-results" class="space-y-2">
-                                <!-- Category results will be inserted here -->
+                    <!-- Larissa Oliveira -->
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-lg">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mb-4 md:mb-0">
+                                <i class="fas fa-user text-gray-400 text-5xl"></i>
+                                <!-- Espaço para foto: substituir o ícone acima por uma imagem -->
+                                <!-- <img src="caminho/para/foto-larissa.jpg" alt="Larissa Oliveira" class="w-full h-full object-cover"> -->
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-semibold text-blue-800 mb-2">Larissa Oliveira</h3>
+                                <p class="text-blue-600 font-medium mb-3">Desenvolvedora</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Larissa Oliveira é uma desenvolvedora criativa e inovadora que está cursando Análise e Desenvolvimento de Sistemas (ADS). Com um olhar atento para detalhes e uma abordagem meticulosa, ela se destaca na criação de interfaces intuitivas e seguras. Sua experiência com desenvolvimento front-end e interesse em experiência do usuário contribuem para tornar nossa plataforma educacional acessível e agradável. Larissa também participa ativamente de comunidades de segurança online, onde compartilha conhecimentos sobre proteção de dados pessoais e privacidade digital.
+                                </p>
                             </div>
                         </div>
-                        
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Tempo Total</h3>
-                            <p id="quiz-time" class="text-gray-700">00:00</p>
+                    </div>
+                    
+                    <!-- Pabulo de Sousa -->
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-lg">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mb-4 md:mb-0">
+                                <i class="fas fa-user text-gray-400 text-5xl"></i>
+                                <!-- Espaço para foto: substituir o ícone acima por uma imagem -->
+                                <!-- <img src="caminho/para/foto-pabulo.jpg" alt="Pabulo de Sousa" class="w-full h-full object-cover"> -->
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-semibold text-blue-800 mb-2">Pabulo de Sousa</h3>
+                                <p class="text-blue-600 font-medium mb-3">Desenvolvedor</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Pabulo de Sousa é um desenvolvedor apaixonado por tecnologias de segurança e está atualmente cursando Análise e Desenvolvimento de Sistemas (ADS). Com um forte interesse em criptografia e proteção de infraestrutura, ele contribui com soluções robustas para nossa plataforma educacional. Seu conhecimento em desenvolvimento back-end e sistemas de autenticação garante que nossos usuários tenham uma experiência segura ao utilizar nossos recursos. Pabulo frequentemente participa de competições de segurança cibernética, aprimorando constantemente suas habilidades para enfrentar os desafios do mundo digital.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Henrique Gimenes -->
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-lg">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mb-4 md:mb-0">
+                                <img src="Henrique.jpeg" alt="Keli Ferreira" class="w-full h-full object-cover">
+                                <!-- Espaço para foto: substituir o ícone acima por uma imagem -->
+                                <!-- <img src="caminho/para/foto-henrique.jpg" alt="Henrique Gimenes" class="w-full h-full object-cover"> -->
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-semibold text-blue-800 mb-2">Henrique Gimenes</h3>
+                                <p class="text-blue-600 font-medium mb-3">Desenvolvedor</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Henrique Gimenes é um desenvolvedor versátil e analítico, atualmente cursando Análise e Desenvolvimento de Sistemas (ADS). Com uma abordagem sistemática para resolução de problemas, ele se destaca na identificação e mitigação de vulnerabilidades em aplicações. Sua paixão por aprendizado contínuo e compartilhamento de conhecimento o torna um valioso membro da equipe educacional. Henrique tem especial interesse em segurança de aplicações móveis e contribui com conteúdos sobre proteção em dispositivos Android e iOS, ajudando nossos usuários a se manterem seguros em todas as plataformas.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div id="score-message" class="max-w-2xl mx-auto mb-8 p-4 rounded-lg"></div>
-                
-                <div id="wrong-answers" class="text-left max-w-4xl mx-auto mb-8"></div>
-                
-                <div class="flex justify-center space-x-4">
-                    <button id="retry-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition">
-                        <i class="fas fa-redo mr-2"></i>Tentar Novamente
-                    </button>
-                    <button id="back-to-reading" class="px-6 py-2 bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700 transition">
-                        <i class="fas fa-book mr-2"></i>Voltar para a Leitura
-                    </button>
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Nossa Missão</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Na CyberSecurity Academy, acreditamos que a educação é a primeira linha de defesa contra ameaças cibernéticas. Nossa missão é capacitar pessoas com conhecimentos práticos e acessíveis sobre segurança digital, contribuindo para um ambiente online mais seguro para todos. Trabalhamos continuamente para desenvolver conteúdos educacionais de alta qualidade, combinando teoria e prática para formar uma nova geração de usuários conscientes e profissionais preparados para os desafios da era digital.
+                    </p>
                 </div>
             </section>
         </main>
-        
-        <footer class="bg-gray-800 text-white py-6 mt-12">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                        <i class="fas fa-shield-alt text-2xl"></i>
-                        <h2 class="text-xl font-bold">CyberSecurity Academy</h2>
-                    </div>
-                    <div class="flex space-x-6">
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="mt-4 text-center md:text-left">
-                    <p class="text-sm text-gray-400">© 2023 CyberSecurity Academy - Todos os direitos reservados</p>
-                    <p class="text-xs text-gray-500 mt-1">Este material é apenas para fins educativos.</p>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script src="script.js"></script>
