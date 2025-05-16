@@ -147,13 +147,13 @@ if (showLoginLinkFromForgot) {
 // --- Lógica das Abas de Navegação da Aplicação Principal ---
 const readingTab = document.getElementById("reading-tab");
 const quizTab = document.getElementById("quiz-tab");
-const aboutTab = document.getElementById("about-tab");
+const sobreNosTab = document.getElementById("sobre-nos-tab");
 const readingSection = document.getElementById("reading-section");
 const quizCategoriesSection = document.getElementById("quiz-categories-section");
 const quizSection = document.getElementById("quiz-section");
 const resultsSection = document.getElementById("results-section");
-const aboutSection = document.getElementById("about-section");
-const startQuizBtn = document.getElementById("start-quiz-btn");
+const sobreNosSection = document.getElementById("sobre-nos-section");
+const startQuizBtn = document.getElementById("start-quiz-btn"); // Note: This ID might not exist in current HTML
 const startSelectedQuizBtn = document.getElementById("start-selected-quiz");
 
 console.log("Attempting to find readingTab:", readingTab ? "Found" : "NOT Found");
@@ -176,17 +176,17 @@ if (quizTab) {
     console.error("Quiz tab (quiz-tab) not found by getElementById.");
 }
 
-console.log("Attempting to find aboutTab:", aboutTab ? "Found" : "NOT Found");
-if (aboutTab) {
-    aboutTab.addEventListener("click", () => {
-        console.log("About tab clicked");
-        showAboutSection();
+console.log("Attempting to find sobreNosTab:", sobreNosTab ? "Found" : "NOT Found");
+if (sobreNosTab) {
+    sobreNosTab.addEventListener("click", () => {
+        console.log("Sobre Nós tab clicked");
+        showSobreNosSection();
     });
 } else {
-    console.error("About tab (about-tab) not found by getElementById.");
+    console.error("Sobre Nós tab (sobre-nos-tab) not found by getElementById.");
 }
 
-if (startQuizBtn) {
+if (startQuizBtn) { // This button is from the original template, might not be in the user's current HTML for reading section
     console.log("Attempting to find startQuizBtn:", startQuizBtn ? "Found" : "NOT Found");
     startQuizBtn.addEventListener("click", () => {
         console.log("Start Quiz Button (start-quiz-btn) clicked");
@@ -210,7 +210,7 @@ function showReadingSection() {
     
     if(quizSection) quizSection.classList.add("hidden");
     if(resultsSection) resultsSection.classList.add("hidden");
-    if(aboutSection) aboutSection.classList.add("hidden");
+    if(sobreNosSection) sobreNosSection.classList.add("hidden");
 
     if(readingTab) {
         readingTab.classList.add("border-blue-600", "text-blue-600");
@@ -222,10 +222,10 @@ function showReadingSection() {
         quizTab.classList.remove("border-blue-600", "text-blue-600");
         console.log("Quiz tab styled as inactive.");
     }
-    if(aboutTab) {
-        aboutTab.classList.add("text-gray-500", "hover:text-gray-700");
-        aboutTab.classList.remove("border-blue-600", "text-blue-600");
-        console.log("About tab styled as inactive.");
+    if(sobreNosTab) {
+        sobreNosTab.classList.add("text-gray-500", "hover:text-gray-700");
+        sobreNosTab.classList.remove("border-blue-600", "text-blue-600");
+        console.log("Sobre Nós tab styled as inactive.");
     }
 }
 
@@ -244,7 +244,7 @@ function showQuizCategoriesSection() {
     
     if(quizSection) quizSection.classList.add("hidden");
     if(resultsSection) resultsSection.classList.add("hidden");
-    if(aboutSection) aboutSection.classList.add("hidden");
+    if(sobreNosSection) sobreNosSection.classList.add("hidden");
     
     if(quizTab) {
         quizTab.classList.add("border-blue-600", "text-blue-600");
@@ -256,25 +256,43 @@ function showQuizCategoriesSection() {
         readingTab.classList.remove("border-blue-600", "text-blue-600");
         console.log("Reading tab styled as inactive.");
     }
-    if(aboutTab) {
-        aboutTab.classList.add("text-gray-500", "hover:text-gray-700");
-        aboutTab.classList.remove("border-blue-600", "text-blue-600");
-        console.log("About tab styled as inactive.");
+    if(sobreNosTab) {
+        sobreNosTab.classList.add("text-gray-500", "hover:text-gray-700");
+        sobreNosTab.classList.remove("border-blue-600", "text-blue-600");
+        console.log("Sobre Nós tab styled as inactive.");
     }
 }
+        
+function showQuizSection() {
+    console.log("showQuizSection called.");
+    if(readingSection) readingSection.classList.add("hidden");
+    if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
+    if(quizSection) quizSection.classList.remove("hidden");
+    if(resultsSection) resultsSection.classList.add("hidden");
+    if(sobreNosSection) sobreNosSection.classList.add("hidden");
+}
 
-function showAboutSection() {
-    console.log("showAboutSection called.");
+function showResultsSection() {
+    console.log("showResultsSection called.");
+    if(readingSection) readingSection.classList.add("hidden");
+    if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
+    if(quizSection) quizSection.classList.add("hidden");
+    if(resultsSection) resultsSection.classList.remove("hidden");
+    if(sobreNosSection) sobreNosSection.classList.add("hidden");
+}
+
+function showSobreNosSection() {
+    console.log("showSobreNosSection called.");
     if(readingSection) readingSection.classList.add("hidden");
     if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
     if(quizSection) quizSection.classList.add("hidden");
     if(resultsSection) resultsSection.classList.add("hidden");
-    if(aboutSection) aboutSection.classList.remove("hidden");
+    if(sobreNosSection) sobreNosSection.classList.remove("hidden");
     
-    if(aboutTab) {
-        aboutTab.classList.add("border-blue-600", "text-blue-600");
-        aboutTab.classList.remove("text-gray-500", "hover:text-gray-700");
-        console.log("About tab styled as active.");
+    if(sobreNosTab) {
+        sobreNosTab.classList.add("border-blue-600", "text-blue-600");
+        sobreNosTab.classList.remove("text-gray-500", "hover:text-gray-700");
+        console.log("Sobre Nós tab styled as active.");
     }
     if(readingTab) {
         readingTab.classList.add("text-gray-500", "hover:text-gray-700");
@@ -286,24 +304,6 @@ function showAboutSection() {
         quizTab.classList.remove("border-blue-600", "text-blue-600");
         console.log("Quiz tab styled as inactive.");
     }
-}
-        
-function showQuizSection() {
-    console.log("showQuizSection called.");
-    if(readingSection) readingSection.classList.add("hidden");
-    if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
-    if(quizSection) quizSection.classList.remove("hidden");
-    if(resultsSection) resultsSection.classList.add("hidden");
-    if(aboutSection) aboutSection.classList.add("hidden");
-}
-
-function showResultsSection() {
-    console.log("showResultsSection called.");
-    if(readingSection) readingSection.classList.add("hidden");
-    if(quizCategoriesSection) quizCategoriesSection.classList.add("hidden");
-    if(quizSection) quizSection.classList.add("hidden");
-    if(resultsSection) resultsSection.classList.remove("hidden");
-    if(aboutSection) aboutSection.classList.add("hidden");
 }
 
 // --- Verificar se usuário já está logado (ao carregar a página) ---
@@ -335,315 +335,333 @@ const quizData = {
     ameacas: [
         { question: "Qual tipo de malware se disfarça de software legítimo?", options: ["Vírus", "Worm", "Cavalo de Troia (Trojan)", "Spyware"], answer: 2, explanation: "Cavalos de Troia se passam por programas úteis para enganar o usuário e infectar o sistema." },
         { question: "O que é ransomware?", options: ["Software que otimiza o desempenho do PC", "Malware que bloqueia o acesso a dados e exige resgate", "Um tipo de antivírus avançado", "Ferramenta de backup de arquivos"], answer: 1, explanation: "Ransomware criptografa os arquivos da vítima e exige pagamento para liberá-los." },
-        { question: "Como um worm se diferencia de um vírus?", options: ["Worms não causam danos", "Vírus precisam de um programa hospedeiro, worms se replicam sozinhos", "Worms são mais fáceis de remover", "Vírus são apenas para e-mail"], answer: 1, explanation: "Vírus precisam se anexar a um programa para se espalhar, enquanto worms podem se replicar e espalhar independentemente." },
-        { question: "O que é um ataque de 'Man-in-the-Middle'?", options: ["Quando alguém fisicamente se posiciona entre você e seu computador", "Quando um atacante intercepta comunicações entre duas partes", "Um tipo de ataque que só funciona em redes móveis", "Quando um hacker usa um computador intermediário para acessar o seu"], answer: 1, explanation: "Em ataques Man-in-the-Middle, o atacante intercepta secretamente a comunicação entre duas partes, podendo visualizar ou alterar os dados transmitidos." },
-        { question: "Qual destas é uma técnica de phishing mais direcionada?", options: ["Vishing", "Smishing", "Spear phishing", "Whaling"], answer: 2, explanation: "Spear phishing é uma forma direcionada de phishing que visa indivíduos ou organizações específicas, usando informações personalizadas para parecer mais convincente." },
-        { question: "O que é um 'keylogger'?", options: ["Um dispositivo para desbloquear portas", "Software que registra as teclas digitadas pelo usuário", "Um tipo de senha forte", "Um programa que corrige erros de digitação"], answer: 1, explanation: "Keyloggers são programas maliciosos que registram tudo o que um usuário digita, incluindo senhas e informações confidenciais." },
-        { question: "Qual é o principal objetivo de um ataque de força bruta?", options: ["Sobrecarregar servidores", "Descobrir senhas testando todas as combinações possíveis", "Enganar usuários para revelar informações", "Danificar hardware"], answer: 1, explanation: "Ataques de força bruta tentam descobrir senhas ou chaves de criptografia testando sistematicamente todas as combinações possíveis." },
-        { question: "O que é 'SQL Injection'?", options: ["Uma técnica para otimizar bancos de dados", "Um ataque que insere código malicioso em consultas SQL", "Um método para backup de dados", "Um tipo de banco de dados seguro"], answer: 1, explanation: "SQL Injection é uma técnica de ataque onde código SQL malicioso é inserido em campos de entrada para manipular bancos de dados." }
+        { question: "Como um worm se diferencia de um vírus?", options: ["Worms não causam danos", "Vírus precisam de um programa hospedeiro, worms se replicam sozinhos", "Worms são mais fáceis de remover", "Vírus são apenas para e-mail"], answer: 1, explanation: "Vírus precisam se anexar a um programa para se espalhar, enquanto worms podem se replicar e se espalhar de forma autônoma pela rede." },
+        { question: "O que é spyware?", options: ["Software que espia o usuário sem seu consentimento", "Um tipo de jogo online", "Ferramenta de limpeza de sistema", "Um navegador seguro"], answer: 0, explanation: "Spyware coleta informações sobre as atividades do usuário, como senhas e histórico de navegação, sem que ele saiba." },
+        { question: "Qual técnica de phishing usa SMS?", options: ["Vishing", "Smishing", "Whaling", "Spear phishing"], answer: 1, explanation: "Smishing é o phishing realizado através de mensagens SMS." },
+        { question: "O que é 'baiting' em engenharia social?", options: ["Oferecer algo atraente para levar a vítima a uma armadilha", "Pescar em alto mar", "Um tipo de software de segurança", "Bloquear acesso a sites perigosos"], answer: 0, explanation: "Baiting (isca) envolve oferecer algo desejável (download gratuito, dispositivo USB 'achado') para atrair a vítima a comprometer sua segurança." },
+        { question: "Um ataque que visa especificamente um indivíduo ou organização é chamado de:", options: ["Ataque genérico", "Ataque de força bruta", "Spear phishing", "Ataque de negação de serviço"], answer: 2, explanation: "Spear phishing é um ataque de phishing altamente direcionado e personalizado." },
+        { question: "O que é um botnet?", options: ["Uma rede de robôs de limpeza", "Uma rede de computadores infectados controlados por um atacante", "Um software de automação de tarefas", "Um tipo de firewall"], answer: 1, explanation: "Botnets são redes de dispositivos 'zumbis' usados para realizar ataques DDoS, enviar spam, etc." },
+        { question: "Qual o principal objetivo de um keylogger?", options: ["Registrar as teclas digitadas pelo usuário", "Bloquear o teclado", "Acelerar a digitação", "Corrigir erros de digitação"], answer: 0, explanation: "Keyloggers são malwares que capturam tudo que é digitado, incluindo senhas e informações bancárias." },
+        { question: "O que é 'tailgating' ou 'piggybacking'?", options: ["Seguir alguém para uma festa", "Entrar em uma área restrita aproveitando o acesso de uma pessoa autorizada", "Um tipo de ataque de rede", "Compartilhar carona para o trabalho"], answer: 1, explanation: "Tailgating é uma técnica de engenharia social física onde o atacante segue uma pessoa autorizada para obter acesso a um local restrito." },
+        { question: "Qual destes é um exemplo de ataque Man-in-the-Middle (MitM)?", options: ["Enviar um e-mail de phishing", "Interceptar a comunicação entre duas partes sem que elas saibam", "Adivinhar uma senha", "Infectar um computador com um vírus"], answer: 1, explanation: "Em um ataque MitM, o atacante se posiciona secretamente entre duas partes que estão se comunicando, podendo ler ou alterar as mensagens." },
+        { question: "O que é 'dumpster diving' no contexto de segurança?", options: ["Mergulhar em uma piscina de lixo", "Procurar informações úteis em lixo descartado", "Um esporte radical", "Limpar arquivos desnecessários do computador"], answer: 1, explanation: "Dumpster diving é a prática de vasculhar o lixo de uma organização em busca de informações confidenciais descartadas incorretamente." }
     ],
     protecao: [
-        { question: "Qual é a melhor prática para criar senhas seguras?", options: ["Usar informações pessoais fáceis de lembrar", "Usar a mesma senha em todos os sites", "Combinar letras, números, símbolos e usar frases longas", "Mudar apenas um caractere quando precisar atualizar"], answer: 2, explanation: "Senhas seguras combinam diferentes tipos de caracteres, são longas e não contêm informações pessoais óbvias." },
-        { question: "O que é um firewall?", options: ["Um tipo de vírus", "Uma barreira que monitora e controla o tráfego de rede", "Um software para acelerar a internet", "Um dispositivo que previne quedas de energia"], answer: 1, explanation: "Firewalls são sistemas de segurança que monitoram e controlam o tráfego de rede com base em regras de segurança predeterminadas." },
-        { question: "Qual destas NÃO é uma boa prática de segurança para e-mails?", options: ["Verificar o remetente antes de abrir anexos", "Clicar em links para verificar se são legítimos", "Usar filtros de spam", "Não compartilhar sua senha por e-mail"], answer: 1, explanation: "Nunca clique em links suspeitos para 'verificá-los'. Use a passagem do mouse (hover) para ver o URL real ou digite-o manualmente no navegador." },
-        { question: "O que é criptografia?", options: ["Um tipo de vírus", "Processo de converter informações em código para prevenir acesso não autorizado", "Software que remove arquivos permanentemente", "Um método para comprimir arquivos"], answer: 1, explanation: "Criptografia é o processo de codificar informações de forma que apenas pessoas autorizadas possam acessá-las." },
-        { question: "Qual é a melhor forma de proteger dados em dispositivos móveis?", options: ["Nunca usar senha", "Usar apenas redes Wi-Fi públicas", "Usar bloqueio de tela, criptografia e manter o sistema atualizado", "Desativar todas as permissões de aplicativos"], answer: 2, explanation: "Proteger dispositivos móveis requer uma combinação de bloqueio de tela seguro, criptografia de dados e manter o sistema e aplicativos atualizados." },
-        { question: "Por que é importante fazer backup de dados?", options: ["Apenas para economizar espaço no dispositivo principal", "Para recuperar dados em caso de perda, roubo ou ataque", "Não é importante se você tiver um bom antivírus", "Apenas empresas precisam de backups"], answer: 1, explanation: "Backups são essenciais para recuperar dados em caso de perda acidental, falha de hardware, roubo de dispositivo ou ataques como ransomware." },
-        { question: "O que é um VPN e por que é útil?", options: ["Um tipo de vírus que afeta redes", "Uma rede virtual privada que criptografa sua conexão para maior privacidade", "Um software que acelera downloads", "Um tipo de firewall avançado"], answer: 1, explanation: "VPN (Virtual Private Network) cria uma conexão criptografada para maior privacidade e segurança, especialmente em redes Wi-Fi públicas." },
-        { question: "Qual destas é uma boa prática para uso de mídias sociais?", options: ["Compartilhar sua localização em tempo real", "Aceitar todas as solicitações de amizade", "Revisar configurações de privacidade regularmente", "Usar a mesma senha em todas as plataformas"], answer: 2, explanation: "Revisar e ajustar regularmente as configurações de privacidade é essencial para controlar quem pode ver suas informações nas mídias sociais." }
+        { question: "Qual a importância de usar senhas diferentes para contas diferentes?", options: ["É mais fácil de lembrar", "Se uma senha for descoberta, as outras contas permanecem seguras", "Não é importante", "É uma exigência legal"], answer: 1, explanation: "Usar senhas únicas evita que o comprometimento de uma conta leve ao comprometimento de várias outras." },
+        { question: "Um exemplo de informação pessoalmente identificável (PII) é:", options: ["Cor favorita", "Nome completo e CPF", "Opinião sobre um filme", "Marca de carro"], answer: 1, explanation: "PII são dados que podem ser usados para identificar um indivíduo específico, como nome, CPF, endereço." },
+        { question: "O que é uma VPN e para que serve principalmente?", options: ["Vírus de Proteção de Rede, para bloquear malware", "Rede Privada Virtual, para criar uma conexão segura e criptografada à internet", "Verificador de Phishing de Notícias, para identificar notícias falsas", "Nenhuma das anteriores"], answer: 1, explanation: "VPNs criam um túnel criptografado para o tráfego da internet, aumentando a privacidade e segurança, especialmente em redes públicas." },
+        { question: "Qual destes é um bom local para fazer backup de dados importantes?", options: ["Apenas no mesmo HD do computador", "Em um HD externo e na nuvem", "Em um pendrive deixado na mesa", "Não fazer backup"], answer: 1, explanation: "A regra 3-2-1 de backup sugere 3 cópias, em 2 mídias diferentes, com 1 fora do local. HD externo e nuvem são boas opções." },
+        { question: "Ao usar um computador público, o que você deve sempre fazer ao terminar?", options: ["Deixar suas contas logadas para facilitar o próximo usuário", "Desligar o monitor", "Fazer logout de todas as suas contas e limpar o histórico de navegação", "Instalar seus programas favoritos"], answer: 2, explanation: "Sempre faça logout e limpe dados pessoais de computadores públicos para proteger sua privacidade." },
+        { question: "O que significa HTTPS no início de um endereço web?", options: ["Hipertexto Transfer Protocol Seguro, indica uma conexão criptografada", "Site de Alta Performance e Tecnologia", "Host Transfer Protocol Standard", "Um site que não usa cookies"], answer: 0, explanation: "HTTPS indica que a comunicação entre seu navegador e o site é criptografada, tornando-a mais segura." },
+        { question: "Qual o risco de conectar um pendrive desconhecido ao seu computador?", options: ["Nenhum, pendrives são sempre seguros", "Pode conter malware que infectará seu dispositivo", "Pode apagar seus arquivos", "Pode melhorar o desempenho do PC"], answer: 1, explanation: "Pendrives desconhecidos podem estar infectados com malware e comprometer seu sistema." },
+        { question: "Por que é arriscado baixar software de fontes não oficiais?", options: ["O software pode ser mais caro", "Pode vir com malware embutido ou ser uma versão pirata com falhas", "Leva mais tempo para baixar", "Não há risco"], answer: 1, explanation: "Software de fontes não confiáveis frequentemente contém malware ou não possui as atualizações de segurança necessárias." },
+        { question: "O que é um 'patch' de segurança?", options: ["Um adesivo para cobrir a webcam", "Uma correção de software para uma vulnerabilidade conhecida", "Um tipo de programa de antivírus", "Uma senha muito forte"], answer: 1, explanation: "Um patch é uma atualização de software projetada para corrigir bugs ou vulnerabilidades de segurança." },
+        { question: "Qual a melhor forma de descartar um HD antigo contendo dados sensíveis?", options: ["Simplesmente jogá-lo no lixo comum", "Formatar o HD uma vez", "Destruição física do HD ou uso de software de limpeza de dados seguro", "Vender o HD como está"], answer: 2, explanation: "Para garantir que dados sensíveis não sejam recuperados, a destruição física ou o uso de software especializado para apagar dados de forma segura são recomendados." },
+        { question: "O que é 'shoulder surfing'?", options: ["Um esporte aquático", "Observar discretamente alguém digitando informações confidenciais", "Navegar na internet anonimamente", "Um tipo de ataque de rede"], answer: 1, explanation: "Shoulder surfing é a prática de espionar por cima do ombro de alguém para obter informações como senhas ou PINs." },
+        { question: "Por que é importante ter cuidado com as permissões concedidas a aplicativos móveis?", options: ["Para economizar bateria", "Aplicativos podem solicitar acesso a dados e funcionalidades desnecessárias, comprometendo a privacidade", "Para liberar espaço de armazenamento", "Não é importante, todos os apps são seguros"], answer: 1, explanation: "Muitos aplicativos pedem mais permissões do que precisam, o que pode levar à coleta excessiva de dados e riscos à privacidade." }
+    ],
+    empresarial: [
+        { question: "O que é um firewall em um ambiente corporativo?", options: ["Um sistema de alarme de incêndio", "Uma barreira que controla o tráfego de rede entre redes internas e externas", "Um software para apagar arquivos", "Um tipo de impressora de rede"], answer: 1, explanation: "Firewalls monitoram e filtram o tráfego de rede com base em regras de segurança para proteger a rede interna." },
+        { question: "Qual o princípio do 'menor privilégio' no controle de acesso?", options: ["Dar a todos os usuários acesso total", "Conceder aos usuários apenas as permissões necessárias para realizar suas tarefas", "Privilegiar os gerentes com mais acesso", "Remover todos os privilégios"], answer: 1, explanation: "O princípio do menor privilégio limita o acesso dos usuários ao mínimo necessário, reduzindo o risco em caso de comprometimento da conta." },
+        { question: "O que é um SIEM em segurança corporativa?", options: ["Sistema de Inteligência e Mapeamento de Emoções", "Software de Edição de Imagens Múltiplas", "Gerenciamento de Eventos e Informações de Segurança", "Serviço de Internet e Email Marketing"], answer: 2, explanation: "SIEM (Security Information and Event Management) coleta e analisa logs de segurança de várias fontes para detectar ameaças." },
+        { question: "Por que o treinamento de conscientização em segurança é importante para funcionários?", options: ["Para que eles possam consertar computadores", "Para ajudá-los a identificar e evitar ameaças como phishing", "Para que possam desenvolver software seguro", "Não é muito importante"], answer: 1, explanation: "O treinamento ajuda os funcionários a se tornarem a primeira linha de defesa contra ataques, reconhecendo e reportando ameaças." },
+        { question: "O que é uma política de segurança da informação?", options: ["Uma lei sobre crimes cibernéticos", "Um documento que define as regras e procedimentos de segurança de uma organização", "Um tipo de seguro contra ataques hacker", "Um software de antivírus"], answer: 1, explanation: "Políticas de segurança estabelecem as diretrizes que todos na organização devem seguir para proteger os ativos de informação." },
+        { question: "O que é um teste de penetração (pentest)?", options: ["Um teste para verificar se canetas funcionam", "Uma simulação de ataque para identificar vulnerabilidades em um sistema", "Um exame médico para testar a pele", "Um teste de velocidade da internet"], answer: 1, explanation: "Testes de penetração são ataques simulados e autorizados para encontrar e corrigir falhas de segurança antes que criminosos as explorem." },
+        { question: "Qual a finalidade de um Plano de Continuidade de Negócios (PCN)?", options: ["Garantir que a empresa continue operando durante e após um desastre", "Planejar as férias dos funcionários", "Aumentar as vendas da empresa", "Criar novos produtos"], answer: 0, explanation: "O PCN visa garantir a resiliência operacional da empresa diante de interrupções significativas." },
+        { question: "O que é 'Zero Trust' como modelo de segurança?", options: ["Confiar em todos os usuários e dispositivos por padrão", "Nunca confiar, sempre verificar cada acesso, independentemente da origem", "Confiar apenas em dispositivos dentro da rede da empresa", "Não usar senhas"], answer: 1, explanation: "O modelo Zero Trust parte do princípio de que ameaças podem existir tanto fora quanto dentro da rede, exigindo verificação contínua." },
+        { question: "Qual o papel da criptografia na segurança de dados corporativos?", options: ["Tornar os dados mais fáceis de ler", "Proteger a confidencialidade dos dados, tornando-os ilegíveis para quem não tem a chave", "Aumentar o tamanho dos arquivos", "Detectar vírus"], answer: 1, explanation: "A criptografia transforma dados em um formato ilegível para proteger sua confidencialidade contra acesso não autorizado." },
+        { question: "O que é um 'incidente de segurança' em uma empresa?", options: ["Um funcionário chegando atrasado", "Qualquer evento que comprometa a confidencialidade, integridade ou disponibilidade dos dados ou sistemas", "Uma queda de energia", "Uma impressora quebrada"], answer: 1, explanation: "Um incidente de segurança é uma violação ou ameaça iminente de violação das políticas de segurança da informação." },
+        { question: "O que é um IDS (Intrusion Detection System)?", options: ["Um sistema que impede todas as intrusões", "Um sistema que detecta atividades suspeitas ou maliciosas na rede ou em um host", "Um software para instalar programas", "Um dispositivo de armazenamento seguro"], answer: 1, explanation: "Um IDS monitora o tráfego de rede ou atividades em um sistema para identificar possíveis ameaças e alertar os administradores." },
+        { question: "Qual a diferença entre um IDS e um IPS (Intrusion Prevention System)?", options: ["Não há diferença, são a mesma coisa", "IDS apenas detecta, enquanto IPS pode detectar e bloquear ativamente as ameaças", "IPS é mais antigo que IDS", "IDS é para redes pequenas, IPS para grandes empresas"], answer: 1, explanation: "Enquanto um IDS (Sistema de Detecção de Intrusão) apenas alerta sobre ameaças, um IPS (Sistema de Prevenção de Intrusão) pode tomar medidas para bloquear ativamente essas ameaças." }
+    ],
+    lgpd: [
+        { question: "O que significa a sigla LGPD?", options: ["Lei Geral de Proteção de Documentos", "Lei Geral de Proteção de Dados Pessoais", "Lei Global de Privacidade Digital", "Liga Geral de Programadores Dedicados"], answer: 1, explanation: "LGPD é a Lei Geral de Proteção de Dados Pessoais, que regula o tratamento de dados pessoais no Brasil." },
+        { question: "Qual o principal objetivo da LGPD?", options: ["Punir empresas que usam dados", "Proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural", "Coletar mais dados dos cidadãos", "Facilitar a venda de dados pessoais"], answer: 1, explanation: "A LGPD visa proteger os dados pessoais dos cidadãos, garantindo sua privacidade e controle sobre suas informações." },
+        { question: "Quem é o 'titular' dos dados segundo a LGPD?", options: ["A empresa que coleta os dados", "O governo", "A pessoa natural a quem se referem os dados pessoais", "O encarregado de dados (DPO)"], answer: 2, explanation: "O titular é a pessoa física a quem os dados se referem." },
+        { question: "O que é 'consentimento' no contexto da LGPD?", options: ["Uma ordem judicial para coletar dados", "Manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados para uma finalidade determinada", "Um contrato de trabalho", "Uma taxa paga pela empresa"], answer: 1, explanation: "O consentimento é uma das bases legais para o tratamento de dados, e deve ser dado de forma clara e específica pelo titular." },
+        { question: "Qual o papel do Encarregado de Proteção de Dados (DPO)?", options: ["Vender os dados da empresa", "Atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD)", "Desenvolver software de segurança", "Investigar crimes cibernéticos"], answer: 1, explanation: "O DPO é o responsável por orientar sobre as práticas de proteção de dados e ser o ponto de contato com titulares e a ANPD." },
+        { question: "Quais são alguns dos direitos dos titulares previstos na LGPD?", options: ["Direito de vender seus dados para quem quiser", "Acesso aos dados, correção de dados incompletos, anonimização, eliminação dos dados", "Direito de invadir sistemas para verificar seus dados", "Apenas o direito de ser esquecido"], answer: 1, explanation: "A LGPD garante diversos direitos aos titulares, como acesso, retificação, cancelamento ou oposição ao tratamento de seus dados." },
+        { question: "O que é um 'Relatório de Impacto à Proteção de Dados Pessoais' (RIPD)?", options: ["Um relatório sobre o impacto financeiro de um vazamento de dados", "Documentação do controlador que contém a descrição dos processos de tratamento de dados pessoais que podem gerar riscos às liberdades civis e aos direitos fundamentais", "Um formulário para solicitar a exclusão de dados", "Uma lista de empresas que cumprem a LGPD"], answer: 1, explanation: "O RIPD é um documento exigido pela LGPD para operações de tratamento de dados que apresentam alto risco, detalhando medidas para mitigar esses riscos." },
+        { question: "A LGPD se aplica apenas a dados online?", options: ["Sim, apenas dados em formato digital", "Não, aplica-se a qualquer operação de tratamento de dados pessoais, inclusive em meios físicos", "Sim, e apenas para grandes empresas de tecnologia", "Não, mas foca principalmente em redes sociais"], answer: 1, explanation: "A LGPD abrange o tratamento de dados pessoais em qualquer formato, seja digital ou físico." },
+        { question: "O que são 'dados sensíveis' de acordo com a LGPD?", options: ["Qualquer dado pessoal", "Dados sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico", "Apenas dados financeiros", "Senhas e nomes de usuário"], answer: 1, explanation: "Dados sensíveis são aqueles que, por sua natureza, podem gerar discriminação e, por isso, recebem proteção especial da LGPD." },
+        { question: "Qual a sanção mais severa prevista na LGPD para o descumprimento da lei?", options: ["Advertência simples", "Multa de até 2% do faturamento da empresa no Brasil, limitada a R$ 50 milhões por infração", "Publicização da infração", "Bloqueio dos dados pessoais a que se refere a infração"], answer: 1, explanation: "A LGPD prevê multas significativas para empresas que não cumprirem suas disposições, podendo chegar a 2% do faturamento, com teto de R$ 50 milhões por infração." }
+    ],
+    carreira: [
+        { question: "Qual destas NÃO é uma carreira comum em cibersegurança?", options: ["Analista de Segurança", "Engenheiro de Software Focado em IA", "Hacker Ético (Pentester)", "Consultor de Segurança"], answer: 1, explanation: "Embora IA possa ser usada em cibersegurança, 'Engenheiro de Software Focado em IA' é uma carreira mais ampla em desenvolvimento de IA, não especificamente cibersegurança." },
+        { question: "Qual certificação é conhecida por focar em hacking ético?", options: ["CISSP", "CompTIA Security+", "CEH (Certified Ethical Hacker)", "CISM"], answer: 2, explanation: "A CEH é uma certificação popular para profissionais que desejam se especializar em testes de penetração e hacking ético." },
+        { question: "Que tipo de habilidade é crucial para um analista de segurança além do conhecimento técnico?", options: ["Habilidade de cozinhar", "Pensamento crítico e resolução de problemas", "Habilidade de tocar um instrumento musical", "Conhecimento de jardinagem"], answer: 1, explanation: "Analistas de segurança precisam ser capazes de analisar situações complexas, identificar padrões e resolver problemas de forma eficaz." },
+        { question: "O que um especialista em forense digital faz?", options: ["Previne ataques antes que aconteçam", "Investiga incidentes de segurança e crimes cibernéticos, coletando e analisando evidências digitais", "Desenvolve políticas de segurança", "Gerencia firewalls"], answer: 1, explanation: "Especialistas em forense digital são como detetives do mundo digital, recuperando dados e investigando a origem e o impacto de incidentes." },
+        { question: "Qual o papel de um CISO (Chief Information Security Officer) em uma organização?", options: ["Desenvolver código para aplicações seguras", "Liderar e gerenciar a estratégia de segurança da informação da empresa", "Realizar testes de penetração diários", "Vender soluções de segurança para clientes"], answer: 1, explanation: "O CISO é o executivo responsável por estabelecer e manter a visão, estratégia e programa para garantir que os ativos de informação e tecnologias sejam adequadamente protegidos." },
+        { question: "O que é 'threat hunting' (caça a ameaças)?", options: ["Uma técnica de pesca esportiva", "Um processo proativo de busca por atividades maliciosas não detectadas nos sistemas e redes", "Desenvolver novas ferramentas de antivírus", "Responder a alertas de segurança já gerados"], answer: 1, explanation: "Threat hunting é uma abordagem proativa onde analistas buscam ativamente por sinais de comprometimento que podem ter passado despercebidos pelas defesas automatizadas." },
+        { question: "Qual a importância de 'soft skills' como comunicação e trabalho em equipe para profissionais de cibersegurança?", options: ["São irrelevantes, apenas habilidades técnicas importam", "São cruciais para explicar riscos complexos, colaborar em investigações e educar usuários", "Apenas para cargos de gerência", "Ajudam a conseguir um salário maior, mas não no trabalho diário"], answer: 1, explanation: "Soft skills são essenciais para que profissionais de cibersegurança possam comunicar efetivamente os riscos, trabalhar em equipe durante incidentes e promover uma cultura de segurança." },
+        { question: "Qual destas áreas de cibersegurança foca na proteção de sistemas de controle industrial (ICS) e SCADA?", options: ["Segurança de Aplicações Web", "Segurança em Nuvem", "Segurança OT (Tecnologia Operacional)", "Segurança de Redes Wireless"], answer: 2, explanation: "A Segurança OT (Operational Technology) é especializada na proteção de sistemas que controlam processos industriais, como SCADA e ICS, que têm requisitos e riscos distintos da TI tradicional." },
+        { question: "O que é um SOC (Security Operations Center)?", options: ["Um tipo de software de criptografia", "Uma equipe centralizada responsável por monitorar, detectar, analisar e responder a incidentes de segurança cibernética", "Um padrão de segurança para sites de e-commerce", "Um local físico onde se guardam servidores"], answer: 1, explanation: "Um SOC é o centro nervoso da defesa cibernética de uma organização, operando 24/7 para proteger contra ameaças." },
+        { question: "Qual a diferença entre 'Red Team' e 'Blue Team' em exercícios de segurança?", options: ["Red Team ataca, Blue Team defende", "Red Team usa software vermelho, Blue Team usa azul", "Red Team foca em hardware, Blue Team em software", "São apenas nomes diferentes para a mesma equipe"], answer: 0, explanation: "Em simulações de segurança, o Red Team simula atacantes tentando comprometer os sistemas, enquanto o Blue Team é responsável por defender e responder a esses ataques." }
     ]
 };
 
-// Variáveis para controle do quiz
 let currentQuestions = [];
 let currentQuestionIndex = 0;
-let score = 0;
+let userAnswers = {};
 let selectedCategories = [];
+let quizStartTime;
 
-// Função para resetar o quiz
-function resetQuiz() {
-    currentQuestions = [];
-    currentQuestionIndex = 0;
-    score = 0;
-    selectedCategories = [];
-    
-    // Resetar seleção de categorias
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    categoryButtons.forEach(btn => {
-        btn.classList.remove('border-blue-500', 'border-2');
-        btn.classList.add('border-blue-100', 'border-2');
-    });
-}
+const quizContainer = document.getElementById("quiz-container");
+const progressText = document.getElementById("progress-text");
+const progressBar = document.getElementById("progress-bar");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const finishBtn = document.getElementById("finish-btn");
+const scoreDisplay = document.getElementById("score");
+const categoryResultsContainer = document.getElementById("category-results");
+const scoreMessageContainer = document.getElementById("score-message");
+const wrongAnswersContainer = document.getElementById("wrong-answers");
+const retryBtn = document.getElementById("retry-btn");
+const backToReadingBtn = document.getElementById("back-to-reading");
+const quizCategoriesDisplay = document.getElementById("quiz-categories-display");
 
-// Event listeners para categorias (se existirem)
-const categoryButtons = document.querySelectorAll('.category-btn');
-if (categoryButtons.length > 0) {
-    categoryButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const category = btn.getAttribute('data-category');
-            
-            if (btn.classList.contains('border-blue-500')) {
-                // Desselecionar
-                btn.classList.remove('border-blue-500');
-                btn.classList.add('border-blue-100');
-                selectedCategories = selectedCategories.filter(cat => cat !== category);
+// --- Seleção de Categoria do Quiz ---
+const categoryBtns = document.querySelectorAll(".category-btn");
+if (categoryBtns) {
+    categoryBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("ring-2");
+            btn.classList.toggle("ring-blue-500");
+            btn.classList.toggle("bg-blue-100");
+            const category = btn.dataset.category;
+            if (selectedCategories.includes(category)) {
+                selectedCategories = selectedCategories.filter(c => c !== category);
             } else {
-                // Selecionar
-                btn.classList.remove('border-blue-100');
-                btn.classList.add('border-blue-500');
-                if (!selectedCategories.includes(category)) {
-                    selectedCategories.push(category);
-                }
+                selectedCategories.push(category);
             }
         });
     });
 }
 
-// Event listener para iniciar quiz com categorias selecionadas
 if (startSelectedQuizBtn) {
-    startSelectedQuizBtn.addEventListener('click', () => {
+    startSelectedQuizBtn.addEventListener("click", () => {
         if (selectedCategories.length === 0) {
-            alert('Por favor, selecione pelo menos uma categoria para iniciar o quiz.');
+            alert("Por favor, selecione pelo menos uma categoria para o quiz.");
             return;
         }
-        
-        // Combinar perguntas das categorias selecionadas
-        currentQuestions = [];
-        selectedCategories.forEach(category => {
-            if (quizData[category]) {
-                currentQuestions = [...currentQuestions, ...quizData[category]];
-            }
-        });
-        
-        // Embaralhar perguntas
-        currentQuestions = shuffleArray(currentQuestions);
-        
-        // Limitar a 10 perguntas se houver mais
-        if (currentQuestions.length > 10) {
-            currentQuestions = currentQuestions.slice(0, 10);
-        }
-        
-        currentQuestionIndex = 0;
-        score = 0;
-        showQuizSection();
-        displayQuestion();
+        loadSelectedQuestions();
+        startQuiz();
     });
 }
 
-// Função para embaralhar array (algoritmo Fisher-Yates)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+function loadSelectedQuestions() {
+    currentQuestions = [];
+    selectedCategories.forEach(category => {
+        if (quizData[category]) {
+            currentQuestions = currentQuestions.concat(quizData[category]);
+        }
+    });
+    currentQuestions.sort(() => Math.random() - 0.5); // Shuffle questions
+    if (quizCategoriesDisplay) {
+        const categoryNames = selectedCategories.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ");
+        quizCategoriesDisplay.textContent = `Categorias: ${categoryNames}`;
     }
-    return array;
 }
 
-// Função para exibir a pergunta atual
+function startQuiz() {
+    currentQuestionIndex = 0;
+    userAnswers = {};
+    quizStartTime = new Date();
+    showQuizSection();
+    displayQuestion();
+    updateProgress();
+}
+
 function displayQuestion() {
-    const quizSection = document.getElementById('quiz-section');
-    if (!quizSection) return;
-    
-    const currentQuestion = currentQuestions[currentQuestionIndex];
-    
-    // Atualizar barra de progresso
-    const progressBar = document.getElementById('quiz-progress-bar');
-    if (progressBar) {
-        const progressPercent = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
-        progressBar.style.width = `${progressPercent}%`;
-    }
-    
-    const questionCounter = document.getElementById('question-counter');
-    if (questionCounter) {
-        questionCounter.textContent = `Pergunta ${currentQuestionIndex + 1} de ${currentQuestions.length}`;
-    }
-    
-    // Exibir pergunta e opções
-    const questionText = document.getElementById('question-text');
-    if (questionText) {
-        questionText.textContent = currentQuestion.question;
-    }
-    
-    const optionsContainer = document.getElementById('options-container');
-    if (optionsContainer) {
-        optionsContainer.innerHTML = '';
-        
-        currentQuestion.options.forEach((option, index) => {
-            const optionDiv = document.createElement('div');
-            optionDiv.className = 'option bg-white p-4 rounded-lg border border-gray-200 cursor-pointer transition';
-            optionDiv.innerHTML = `
-                <div class="flex items-center">
-                    <div class="option-marker w-6 h-6 rounded-full border-2 border-blue-500 flex items-center justify-center mr-3">
-                        <div class="option-marker-inner w-3 h-3 rounded-full bg-blue-500 hidden"></div>
+    if (!quizContainer || !currentQuestions[currentQuestionIndex]) return;
+    const questionData = currentQuestions[currentQuestionIndex];
+    quizContainer.innerHTML = `
+        <div class="quiz-card bg-white p-6 rounded-lg shadow-md mb-6">
+            <h3 class="text-xl font-semibold text-blue-800 mb-4">${currentQuestionIndex + 1}. ${questionData.question}</h3>
+            <div class="space-y-3">
+                ${questionData.options.map((option, index) => `
+                    <div class="option border border-gray-200 rounded-lg p-3 hover:bg-blue-50 cursor-pointer flex items-center" data-index="${index}">
+                        <input type="radio" id="option-${index}" name="quiz-option" value="${index}" class="mr-3 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" ${userAnswers[currentQuestionIndex] === index ? "checked" : ""}>
+                        <label for="option-${index}" class="text-gray-700 flex-1 cursor-pointer">${option}</label>
                     </div>
-                    <span>${option}</span>
-                </div>
-            `;
-            
-            optionDiv.addEventListener('click', () => selectOption(index));
-            optionsContainer.appendChild(optionDiv);
-        });
-    }
-    
-    // Esconder feedback e botão de próxima pergunta
-    const feedbackDiv = document.getElementById('answer-feedback');
-    if (feedbackDiv) {
-        feedbackDiv.classList.add('hidden');
-    }
-    
-    const nextBtn = document.getElementById('next-question-btn');
-    if (nextBtn) {
-        nextBtn.classList.add('hidden');
-    }
-}
-
-// Função para selecionar uma opção
-function selectOption(optionIndex) {
-    // Verificar se já respondeu
-    const feedbackDiv = document.getElementById('answer-feedback');
-    if (feedbackDiv && !feedbackDiv.classList.contains('hidden')) {
-        return; // Já respondeu, aguardando clicar em "Próxima"
-    }
-    
-    const currentQuestion = currentQuestions[currentQuestionIndex];
-    const isCorrect = optionIndex === currentQuestion.answer;
-    
-    if (isCorrect) {
-        score++;
-    }
-    
-    // Marcar opção selecionada
-    const options = document.querySelectorAll('.option');
-    options.forEach((option, index) => {
-        const marker = option.querySelector('.option-marker');
-        const markerInner = option.querySelector('.option-marker-inner');
-        
-        if (index === optionIndex) {
-            // Opção selecionada
-            markerInner.classList.remove('hidden');
-            
-            if (index === currentQuestion.answer) {
-                // Resposta correta
-                option.classList.add('border-green-500', 'bg-green-50');
-                marker.classList.remove('border-blue-500');
-                marker.classList.add('border-green-500');
-                markerInner.classList.add('bg-green-500');
-                markerInner.classList.remove('bg-blue-500');
-            } else {
-                // Resposta incorreta
-                option.classList.add('border-red-500', 'bg-red-50');
-                marker.classList.remove('border-blue-500');
-                marker.classList.add('border-red-500');
-                markerInner.classList.add('bg-red-500');
-                markerInner.classList.remove('bg-blue-500');
-            }
-        } else if (index === currentQuestion.answer) {
-            // Destacar resposta correta
-            option.classList.add('border-green-500', 'bg-green-50');
-            marker.classList.remove('border-blue-500');
-            marker.classList.add('border-green-500');
-        }
-        
-        // Desabilitar cliques
-        option.classList.remove('cursor-pointer');
-        option.classList.add('cursor-default');
-    });
-    
-    // Mostrar feedback
-    if (feedbackDiv) {
-        feedbackDiv.classList.remove('hidden');
-        feedbackDiv.innerHTML = `
-            <div class="p-4 rounded-lg ${isCorrect ? 'bg-green-100 border-l-4 border-green-500' : 'bg-red-100 border-l-4 border-red-500'}">
-                <p class="font-semibold ${isCorrect ? 'text-green-800' : 'text-red-800'}">${isCorrect ? 'Correto!' : 'Incorreto!'}</p>
-                <p class="mt-1 text-gray-700">${currentQuestion.explanation}</p>
-            </div>
-        `;
-    }
-    
-    // Mostrar botão de próxima pergunta
-    const nextBtn = document.getElementById('next-question-btn');
-    if (nextBtn) {
-        nextBtn.classList.remove('hidden');
-        nextBtn.textContent = currentQuestionIndex < currentQuestions.length - 1 ? 'Próxima Pergunta' : 'Ver Resultados';
-        
-        // Remover event listeners anteriores
-        const newBtn = nextBtn.cloneNode(true);
-        nextBtn.parentNode.replaceChild(newBtn, nextBtn);
-        
-        newBtn.addEventListener('click', () => {
-            if (currentQuestionIndex < currentQuestions.length - 1) {
-                currentQuestionIndex++;
-                displayQuestion();
-            } else {
-                showResults();
-            }
-        });
-    }
-}
-
-// Função para mostrar resultados
-function showResults() {
-    showResultsSection();
-    
-    const resultsSection = document.getElementById('results-section');
-    if (!resultsSection) return;
-    
-    const percentage = Math.round((score / currentQuestions.length) * 100);
-    let resultMessage, resultClass, resultIcon;
-    
-    if (percentage >= 90) {
-        resultMessage = "Excelente! Você é um especialista em segurança cibernética!";
-        resultClass = "text-green-600";
-        resultIcon = "trophy";
-    } else if (percentage >= 70) {
-        resultMessage = "Muito bom! Você tem um bom conhecimento sobre segurança cibernética.";
-        resultClass = "text-blue-600";
-        resultIcon = "award";
-    } else if (percentage >= 50) {
-        resultMessage = "Bom trabalho! Você está no caminho certo, mas ainda há espaço para melhorar.";
-        resultClass = "text-yellow-600";
-        resultIcon = "star-half-alt";
-    } else {
-        resultMessage = "Continue estudando! A segurança cibernética é um campo complexo que requer prática contínua.";
-        resultClass = "text-red-600";
-        resultIcon = "book";
-    }
-    
-    resultsSection.innerHTML = `
-        <div class="bg-white rounded-lg shadow-lg p-8 text-center">
-            <i class="fas fa-${resultIcon} text-6xl ${resultClass} mb-4"></i>
-            <h2 class="text-3xl font-bold text-blue-900 mb-2">Resultado do Quiz</h2>
-            <div class="text-5xl font-bold ${resultClass} mb-4">${percentage}%</div>
-            <p class="text-xl mb-2">Você acertou ${score} de ${currentQuestions.length} perguntas</p>
-            <p class="text-lg text-gray-700 mb-6">${resultMessage}</p>
-            
-            <div class="flex justify-center space-x-4">
-                <button id="retry-quiz-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
-                    <i class="fas fa-redo mr-2"></i> Tentar Novamente
-                </button>
-                <button id="back-to-categories-btn" class="px-6 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition">
-                    <i class="fas fa-th-list mr-2"></i> Outras Categorias
-                </button>
+                `).join("")}
             </div>
         </div>
     `;
-    
-    // Event listeners para botões de resultado
-    const retryBtn = document.getElementById('retry-quiz-btn');
-    if (retryBtn) {
-        retryBtn.addEventListener('click', () => {
-            currentQuestionIndex = 0;
-            score = 0;
-            showQuizSection();
-            displayQuestion();
+
+    document.querySelectorAll(".option").forEach(optionEl => {
+        optionEl.addEventListener("click", () => {
+            const radio = optionEl.querySelector("input[type='radio']");
+            radio.checked = true;
+            userAnswers[currentQuestionIndex] = parseInt(radio.value);
         });
+    });
+    updateNavigationButtons();
+}
+
+function updateNavigationButtons() {
+    if(prevBtn) prevBtn.classList.toggle("hidden", currentQuestionIndex === 0);
+    if(nextBtn) nextBtn.classList.toggle("hidden", currentQuestionIndex === currentQuestions.length - 1 || currentQuestions.length === 0);
+    if(finishBtn) finishBtn.classList.toggle("hidden", currentQuestionIndex !== currentQuestions.length - 1 || currentQuestions.length === 0);
+}
+
+function updateProgress() {
+    if (!progressBar || !progressText || currentQuestions.length === 0) return;
+    const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+    progressBar.style.width = `${progress}%`;
+    progressText.textContent = `${currentQuestionIndex + 1}/${currentQuestions.length}`;
+}
+
+if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            displayQuestion();
+            updateProgress();
+        }
+    });
+}
+
+if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        if (!userAnswers.hasOwnProperty(currentQuestionIndex)) {
+            alert("Por favor, selecione uma resposta.");
+            return;
+        }
+        if (currentQuestionIndex < currentQuestions.length - 1) {
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
+        }
+    });
+}
+
+if (finishBtn) {
+    finishBtn.addEventListener("click", () => {
+        if (!userAnswers.hasOwnProperty(currentQuestionIndex) && currentQuestions.length > 0) {
+            alert("Por favor, selecione uma resposta para a última pergunta.");
+            return;
+        }
+        calculateResults();
+        showResultsSection();
+    });
+}
+
+function calculateResults() {
+    let score = 0;
+    let categoryScores = {};
+    selectedCategories.forEach(cat => categoryScores[cat] = { correct: 0, total: 0 });
+    if(wrongAnswersContainer) wrongAnswersContainer.innerHTML = "<h3 class='text-xl font-semibold text-red-700 mb-4'>Respostas Incorretas e Explicações:</h3>";
+    let hasWrongAnswers = false;
+
+    currentQuestions.forEach((q, index) => {
+        const questionCategory = selectedCategories.find(cat => quizData[cat] && quizData[cat].includes(q));
+        if (questionCategory) {
+            categoryScores[questionCategory].total++;
+        }
+
+        if (userAnswers[index] === q.answer) {
+            score++;
+            if (questionCategory) {
+                categoryScores[questionCategory].correct++;
+            }
+        } else {
+            hasWrongAnswers = true;
+            if(wrongAnswersContainer) {
+                wrongAnswersContainer.innerHTML += `
+                    <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <p class="font-semibold text-gray-800"><strong>Questão ${index + 1}:</strong> ${q.question}</p>
+                        <p class="text-red-600"><strong>Sua resposta:</strong> ${q.options[userAnswers[index]] || "Não respondida"}</p>
+                        <p class="text-green-600"><strong>Resposta correta:</strong> ${q.options[q.answer]}</p>
+                        <p class="text-sm text-gray-600 mt-1"><strong>Explicação:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            }
+        }
+    });
+
+    if(scoreDisplay) scoreDisplay.textContent = score;
+    if(document.getElementById("score") && document.getElementById("score").nextElementSibling) {
+        document.getElementById("score").nextElementSibling.textContent = `/${currentQuestions.length}`;
     }
     
-    const backToCategoriesBtn = document.getElementById('back-to-categories-btn');
-    if (backToCategoriesBtn) {
-        backToCategoriesBtn.addEventListener('click', () => {
-            resetQuiz();
-            showQuizCategoriesSection();
-        });
+    if(categoryResultsContainer) {
+        categoryResultsContainer.innerHTML = "";
+        for (const category in categoryScores) {
+            const { correct, total } = categoryScores[category];
+            if (total > 0) {
+                const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+                categoryResultsContainer.innerHTML += `
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-gray-700">${category.charAt(0).toUpperCase() + category.slice(1)}:</span>
+                        <span class="font-medium ${percentage >= 70 ? "text-green-600" : percentage >= 40 ? "text-yellow-600" : "text-red-600"}">${correct}/${total} (${percentage}%)</span>
+                    </div>
+                `;
+            }
+        }
+    }
+
+    const quizEndTime = new Date();
+    const timeTaken = Math.floor((quizEndTime - quizStartTime) / 1000);
+    const minutes = Math.floor(timeTaken / 60);
+    const seconds = timeTaken % 60;
+    if(document.getElementById("quiz-time")) document.getElementById("quiz-time").textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+    let message = "";
+    let messageClass = "";
+    const percentageScore = currentQuestions.length > 0 ? (score / currentQuestions.length) * 100 : 0;
+    if (percentageScore >= 80) {
+        message = "Excelente! Você demonstrou um ótimo conhecimento em cibersegurança!";
+        messageClass = "bg-green-100 text-green-800";
+    } else if (percentageScore >= 60) {
+        message = "Muito bom! Continue estudando para aprimorar ainda mais seus conhecimentos.";
+        messageClass = "bg-blue-100 text-blue-800";
+    } else if (percentageScore >= 40) {
+        message = "Bom esforço! Revise os tópicos onde teve mais dificuldade.";
+        messageClass = "bg-yellow-100 text-yellow-800";
+    } else {
+        message = "Não desanime! A cibersegurança é um campo vasto. Revise o material e tente novamente.";
+        messageClass = "bg-red-100 text-red-800";
+    }
+    if(scoreMessageContainer) {
+        scoreMessageContainer.textContent = message;
+        scoreMessageContainer.className = `max-w-2xl mx-auto mb-8 p-4 rounded-lg ${messageClass}`;
+    }
+
+    if (!hasWrongAnswers && wrongAnswersContainer) {
+        wrongAnswersContainer.innerHTML = '<p class="text-green-600 font-semibold">Parabéns! Você acertou todas as questões!</p>';
     }
 }
+
+function resetQuiz() {
+    selectedCategories = [];
+    if(categoryBtns) {
+        categoryBtns.forEach(btn => {
+            btn.classList.remove("ring-2", "ring-blue-500", "bg-blue-100");
+        });
+    }
+    // Não chama showQuizCategoriesSection() diretamente aqui para evitar conflito com logout
+}
+
+if (retryBtn) {
+    retryBtn.addEventListener("click", () => {
+        showQuizCategoriesSection(); // Agora o usuário volta para a seleção de categorias
+    });
+}
+
+if (backToReadingBtn) {
+    backToReadingBtn.addEventListener("click", () => {
+        resetQuiz(); 
+        showReadingSection();
+    });
+}
+console.log("Script execution finished initial setup.");
+
+document.getElementById("register-form").addEventListener("submit", function(event) {
+    const password = document.getElementById("register-password").value;
+    const confirm = document.getElementById("register-password-confirm").value;
+    if (password !== confirm) {
+        event.preventDefault();
+        alert("As senhas não coincidem!");
+    }
+});
